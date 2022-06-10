@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>javaProject</artifactId>
+        <groupId>com.hediancha.javaProject</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>javaSenior</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>multithreading</module>
+        <module>commonClass</module>
+        <module>enumAndAnnotation</module>
+        <module>collection</module>
+        <module>map</module>
+        <module>genericsAndFile</module>
+        <module>IoStream</module>
+        <module>IOStreamNetworkProgramming</module>
+        <module>reflection</module>
+        <module>dynamicProxyAndJava8</module>
+        <module>java9-10-11</module>
+        <module>myproject03</module>
+        <module>zzMyCodeArea</module>
+    </modules>
+
+
+</project>
