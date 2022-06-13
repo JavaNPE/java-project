@@ -2,6 +2,7 @@ package com.hediancha.array;
 
 import com.hediancha.bean.UserDto;
 import com.hediancha.bean.UserInfoDto;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
@@ -99,7 +100,7 @@ public class ArrayTest {
     public void testListToMap() {
         // List 转成Map
         List<UserInfoDto> userInfoDtos = new ArrayList<>();
-        UserInfoDto userInfoDto = new UserInfoDto();
+        UserInfoDto userInfoDto = UserInfoDto.builder().build();
         userInfoDto.setUserId("Id1008791");
         userInfoDto.setPhone("17108891984");
         userInfoDto.setUserName("罗辑");
@@ -128,7 +129,14 @@ public class ArrayTest {
 
         // 大List
         List<UserInfoDto> userInfoDtos = new ArrayList<>();
-        UserInfoDto userInfoDto1 = new UserInfoDto();
+        UserInfoDto build = UserInfoDto.builder().build();
+        userInfoDtos.add(build);
+        System.out.println(CollectionUtils.isNotEmpty(userInfoDtos));
+        System.out.println(userInfoDtos.get(0));
+        System.out.println(userInfoDtos.get(0).getPhone());
+        System.out.println(build);
+
+        UserInfoDto userInfoDto1 = UserInfoDto.builder().build();
         userInfoDto1.setUserId("Id1008791");
         userInfoDto1.setPhone("17108891984");
         userInfoDto1.setUserName("罗辑");

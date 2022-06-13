@@ -1,5 +1,6 @@
 package com.hediancha.bean;
 
+import lombok.Builder;
 import lombok.Data;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
  * @Description
  */
 @Data
+@Builder
 public class UserInfoDto {
     private String userId;
     private String userName;

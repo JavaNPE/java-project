@@ -22,7 +22,7 @@ public class OptionalDemo {
     public static Optional<Member> getMemberByIdFromDB() {
         boolean hasName = true;
         if (hasName) {
-            return Optional.of(new Member("沉默王二"));
+            return Optional.of(new Member(null));
         }
         return Optional.empty();
     }
