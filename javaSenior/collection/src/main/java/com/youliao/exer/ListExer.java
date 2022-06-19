@@ -1,5 +1,6 @@
 package com.youliao.exer;
 
+import com.google.common.collect.Lists;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -27,5 +28,19 @@ public class ListExer {
 //        list.remove(2);
         list.remove(new Integer(2));
     }
-
+    @Test
+    public void testGuava() {
+        ArrayList<Object> objects = Lists.newArrayList();
+        if (objects == null) {
+            System.out.println("----------");
+        }
+        if (objects.size() == 0) {
+            System.out.println("===========");
+        }
+        List<Object> obj = null;
+        if (obj == null) {
+            System.out.println("????????????");
+        }
+        System.out.println(objects);
+    }
 }
