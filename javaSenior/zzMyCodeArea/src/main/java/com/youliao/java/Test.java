@@ -29,4 +29,17 @@ public class Test {
             System.out.println(BigDecimal.ZERO);
         }
     }
+
+    @org.junit.Test
+    public void testFalse() {
+        if (Boolean.FALSE) {
+            System.out.println("************");
+        }
+        if (!Boolean.FALSE) {
+            System.out.println("____________________");
+        }
+        if (!(Boolean.FALSE)) {
+            System.out.println("=====================");
+        }
+    }
 }

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="java9-10-11" />
+        <module name="reflection" />
+        <module name="IoStream" />
+        <module name="dynamicProxyAndJava8" />
+        <module name="collection" />
+        <module name="dataStructure" />
+        <module name="javaBasics" />
+        <module name="zzMyCodeArea" />
+        <module name="myproject03" />
+        <module name="commonClass" />
+        <module name="genericsAndFile" />
+        <module name="IoStreamNetworkProgramming" />
+        <module name="enumAndAnnotation" />
+        <module name="map" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>

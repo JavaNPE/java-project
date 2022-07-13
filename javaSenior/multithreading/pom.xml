@@ -11,9 +11,9 @@
 
     <artifactId>multithreading</artifactId>
     <packaging>pom</packaging>
-    <modules>
-        <module>commonClass</module>
-    </modules>
+<!--    <modules>-->
+<!--        <module>commonClass</module>-->
+<!--    </modules>-->
 
 
 </project>
