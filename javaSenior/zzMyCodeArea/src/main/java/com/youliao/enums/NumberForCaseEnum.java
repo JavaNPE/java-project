@@ -1,7 +1,11 @@
 package com.youliao.enums;
 
+import com.google.common.collect.Lists;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @Author HedianTea
@@ -20,6 +24,23 @@ public enum NumberForCaseEnum {
     private String code;
     private String description;
 
+    /**
+     * 获取产品码值列表
+     *
+     * @return
+     */
+    public static List<String> getProductCodes() {
+        return getProductIds().stream().map(NumberForCaseEnum::getCode).collect(Collectors.toList());
+    }
+
+    /**
+     * 获取产品列表
+     *
+     * @return
+     */
+    private static List<NumberForCaseEnum> getProductIds() {
+        return Lists.newArrayList(NumberForCaseEnum.ONE, NumberForCaseEnum.TWO);
+    }
 
     /**
      * 根据编码code查找枚举
