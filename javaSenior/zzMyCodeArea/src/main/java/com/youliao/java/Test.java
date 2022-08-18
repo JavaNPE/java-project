@@ -42,4 +42,25 @@ public class Test {
             System.out.println("=====================");
         }
     }
+
+    @org.junit.Test
+    public void testLong() {
+        long l = Long.parseLong("3");
+        System.out.println(l);
+    }
+
+    @org.junit.Test
+    public void testJoin() {
+        String list = "1,2,3,4";
+        String join = String.join("_", list);
+        System.out.println(join);
+    }
+
+    @org.junit.Test
+    public void testStringBuilder() {
+        String list = "2022-01-01 00:00:00";
+        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder append = stringBuilder.append("'").append(list).append("'");
+        System.out.println(append.toString());
+    }
 }
