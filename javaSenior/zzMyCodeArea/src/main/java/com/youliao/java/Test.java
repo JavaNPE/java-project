@@ -1,7 +1,13 @@
 package com.youliao.java;
 
+import com.google.common.collect.Lists;
+import com.youliao.entity.AttrEntity;
+import org.apache.commons.collections.CollectionUtils;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @Author HedianTea
@@ -51,9 +57,26 @@ public class Test {
 
     @org.junit.Test
     public void testJoin() {
-        String list = "1,2,3,4";
-        String join = String.join("_", list);
-        System.out.println(join);
+//        String str = "12,3,4";
+//        List<String> list = Arrays.asList(String.join(",", str));
+//        System.out.println(list);
+//        String s = "30";
+//        int i = Integer.parseInt(s);
+//        //System.out.println(i);
+
+        String s1 = "12,3,4";
+        String[] split = s1.split(",");
+
+        List<String> strings = Arrays.asList(s1.split(","));
+        System.out.println(strings);
+        if (CollectionUtils.isEmpty(strings)) {
+            System.out.println("-----------------");
+        }
+
+        List<String> productIds = Lists.newArrayList();
+        productIds.add("WLD001");
+        productIds.add("WLD002");
+        System.out.println(productIds);
     }
 
     @org.junit.Test
@@ -62,5 +85,24 @@ public class Test {
         StringBuilder stringBuilder = new StringBuilder();
         StringBuilder append = stringBuilder.append("'").append(list).append("'");
         System.out.println(append.toString());
+        String list1 = "'" + list + "'";
+        System.out.println("list1:" + list1);
+    }
+    /**
+     * 自动装箱
+     */
+    @org.junit.Test
+    public void test01() {
+        Integer n = null;
+        int i = n.intValue();
+        System.out.println(i);
+        System.out.println(2 * n);
+    }
+    @org.junit.Test
+    public void textReflection() {
+        Class<AttrEntity> attrEntityClass = AttrEntity.class;
+        ClassLoader classLoader = attrEntityClass.getClassLoader();
+        ClassLoader parent = classLoader.getParent();
+        System.out.println(attrEntityClass);
     }
 }
