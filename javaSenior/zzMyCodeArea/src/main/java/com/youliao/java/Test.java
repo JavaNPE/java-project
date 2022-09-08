@@ -105,4 +105,15 @@ public class Test {
         ClassLoader parent = classLoader.getParent();
         System.out.println(attrEntityClass);
     }
+
+    @org.junit.Test
+    public void testNPE() {
+        List<AttrEntity> list = null;
+        if (CollectionUtils.isNotEmpty(list)) {
+            System.out.println("-------------");
+        }
+        if (list != null && list.size() > 0) {
+            System.out.println("-------------");
+        }
+    }
 }
