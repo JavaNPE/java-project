@@ -1,6 +1,8 @@
 package com.hediantea.queue;
 
 /**
+ * 使用数组模拟队列代码实现-1
+ *
  * @author HedianTea
  * @email daki9981@qq.com
  * @date 2022/8/7 10:08
@@ -93,7 +95,8 @@ class ArrayQueue {
         if (isEmpty()) {
             throw new RuntimeException("队列为空，没有数据！！！\"");
         }
-        return arr[front + 1];  // 初始定义front = -1; 指向队列头部，分析出front是指向队列头的前一个位置，+1之后指向第一个位置
+        // 初始定义front = -1; 指向队列头部，分析出front是指向队列头的前一个位置，+1之后指向第一个位置
+        return arr[front + 1];
     }
 
 }
