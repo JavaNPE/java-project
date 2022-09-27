@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,7 +16,7 @@ import java.util.stream.Collectors;
  */
 @Getter
 @AllArgsConstructor
-public enum NumberForCaseEnum {
+public enum  NumberForCaseEnum {
 
     ONE("NBCBZJD001", "直接贷001"),
     TWO("NBCBZJD002", "直接贷002"),
@@ -57,6 +58,13 @@ public enum NumberForCaseEnum {
             }
         }
         return null;
+    }
+
+    public static NumberForCaseEnum find(String code) {
+        return Arrays.stream(NumberForCaseEnum.values())
+                .filter(input -> input.getCode().equals(code))
+                .findFirst()
+                .orElse(null);
     }
 }
 
