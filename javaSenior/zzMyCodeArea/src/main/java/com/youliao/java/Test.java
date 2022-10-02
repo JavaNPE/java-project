@@ -3,6 +3,7 @@ package com.youliao.java;
 import com.google.common.collect.Lists;
 import com.youliao.entity.AttrEntity;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -88,6 +89,7 @@ public class Test {
         String list1 = "'" + list + "'";
         System.out.println("list1:" + list1);
     }
+
     /**
      * 自动装箱
      */
@@ -98,6 +100,7 @@ public class Test {
         System.out.println(i);
         System.out.println(2 * n);
     }
+
     @org.junit.Test
     public void textReflection() {
         Class<AttrEntity> attrEntityClass = AttrEntity.class;
@@ -114,6 +117,39 @@ public class Test {
         }
         if (list != null && list.size() > 0) {
             System.out.println("-------------");
+        }
+    }
+
+    @org.junit.Test
+    public void test2() {
+        String s1 = "null";
+        String s2 = "null";
+        String s3 = "null";
+        String s4 = "null";
+        if (StringUtils.isBlank(s3)) {
+            System.out.println("String s3 = null;");
+        }
+        // 三者都为null才让其进入
+//        if (StringUtils.isBlank(s1) && StringUtils.isBlank(s2) && StringUtils.isBlank(s3)) {
+//            System.out.println("1111111111111111111");
+//        }
+
+        // 三者有一个为null就进入（全为null是也进入,全不为null不进）
+        if (StringUtils.isBlank(s1) || StringUtils.isBlank(s2) || StringUtils.isBlank(s3) || StringUtils.isBlank(s4)) {
+            System.out.println("2222222222222222222222");
+        }
+
+        // 有一个不为null的则进入(全部为null不会进入)
+        if (StringUtils.isNotBlank(s1) || StringUtils.isNotBlank(s2) || StringUtils.isNotBlank(s3)) {
+            System.out.println("333333333333333333");
+        }
+        // 有一个不为null的则进入(全部为null进入)
+        if (!(StringUtils.isBlank(s1) && StringUtils.isBlank(s2) && StringUtils.isNotBlank(s3))) {
+            System.out.println("4444444444444444");
+        }
+        // 有一个不为null的时候不进入(全部为null进，)
+        if (!(StringUtils.isNotBlank(s1) || StringUtils.isNotBlank(s2) || StringUtils.isNotBlank(s3))) {
+            System.out.println("5555555555555");
         }
     }
 }
