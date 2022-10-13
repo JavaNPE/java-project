@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @Author HedianTea
@@ -152,4 +153,49 @@ public class Test {
             System.out.println("5555555555555");
         }
     }
+
+/*
+    public class demoUtil {
+        public static Long methdName(List<EnterpriseSolutionsSeq> seqList){
+            if(CollUtil.isEmpty(seqList)){
+                return null;
+            }
+            // 下面这行代码会被sonar检测有问题，因为在对Optional对象使用get前没有使用 isPresent()进行校验
+            // Optional对象来源因为用了Stream 的 min 方法，其返回值是 Optional类型的
+            EnterpriseSolutionsSeq solutionsSeq = seqList.stream().filter(Objects::nonNull).min(Comparator.comparing(EnterpriseSolutionsSeq::getSeq)).get();
+            return solutionsSeq.getSeq();
+        }
+    }
+
+    public class demoUtil {
+
+        public static Long methdName(List<EnterpriseSolutionsSeq> seqList){
+            if(CollUtil.isEmpty(seqList)){
+                return null;
+            }
+
+            Optional<EnterpriseToolsSeq> min = toolsSeqList.stream().filter(Objects::nonNull).min(Comparator.comparing(EnterpriseToolsSeq::getSeq));
+            if(min.isPresent()){
+                return min.get().getSeq();
+            }
+            return 1000000L;
+        }
+    }
+
+*/
+
+    /**
+     * BigDecimal相加测试
+     */
+    @org.junit.Test
+    public void testBigDecimal() {
+        BigDecimal b1 = BigDecimal.valueOf(11.8);
+        BigDecimal b2 = BigDecimal.valueOf(0.2);
+        BigDecimal b3 = BigDecimal.valueOf(8.00);
+        BigDecimal b4 = null;
+        BigDecimal sum = new BigDecimal(0);
+        sum = sum.add(b1).add(b2).add(b3).add(Optional.ofNullable(b4).orElse(BigDecimal.ZERO));
+        System.out.println(sum);
+    }
+
 }
