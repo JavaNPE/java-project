@@ -17,3 +17,5 @@ CjavaSenior/reflection/src/main/java/com/youliao/java1/Creature.java,3\3\33e752
 WjavaSenior/zzMyCodeArea/src/main/java/com/youliao/java/SwitchNumberForCaseEnumTest.java,b\3\b39da9deb615e63f0bd7b119573ec3fdc69306c5
 w
 G.idea/sonarlint/issuestore/4/b/4b14fcd8212450fb2da7a94030ded74c0d0719de,6\c\6c2db3cc9b4561982ed56f98429db9559f0e7872
+Å
+QjavaSenior/zzMyCodeArea/src/main/java/com/youliao/strategyPattern/HuToolTest.java,7\3\73a0beeafd9735f0cda70554fc239c3ca078cebb

@@ -198,4 +198,22 @@ public class Test {
         System.out.println(sum);
     }
 
+    @org.junit.Test
+    public void testA() {
+        String s1 = "null";
+        String s2 = "null";
+        String s3 = "null";
+        if (StringUtils.isBlank(s1) && StringUtils.isBlank(s2) && StringUtils.isBlank(s3)) {
+            System.out.println("---------------");
+        }
+    }
+
+    @org.junit.Test
+    public void testB() {
+        String s1 = "0";
+        if (s1.equals("0")) {
+            s1 = "1";
+        }
+        System.out.println(s1);
+    }
 }
