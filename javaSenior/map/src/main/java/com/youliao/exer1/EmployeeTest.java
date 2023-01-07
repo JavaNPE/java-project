@@ -84,7 +84,11 @@ public class EmployeeTest {
         Employee e3 = new Employee("guofucheng", 44, new MyDate(1987, 5, 9));
         Employee e4 = new Employee("liming", 51, new MyDate(1954, 8, 12));
         Employee e5 = new Employee("liangzhaowei", 21, new MyDate(1978, 12, 4));
+        Employee e6 = new Employee(null, 21, new MyDate(1978, 12, 4));
 
+        System.out.println("e6:" + e6);
+        String name = e6.getName();
+        System.out.println("name:" + name);
         set.add(e1);
         set.add(e2);
         set.add(e3);

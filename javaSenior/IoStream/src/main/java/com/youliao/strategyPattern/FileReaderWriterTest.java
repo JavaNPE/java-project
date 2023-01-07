@@ -1,11 +1,14 @@
 package com.youliao.strategyPattern;
 
+import com.google.common.collect.Lists;
 import org.junit.Test;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * 一、流的分类：
@@ -105,9 +108,9 @@ public class FileReaderWriterTest {
             while ((len = fr.read(cbuf)) != -1) {
                 //方式一：
                 //错误的写法
-//                for(int i = 0;i < cbuf.length;i++){
-//                    System.out.print(cbuf[i]);
-//                }
+                for(int i = 0;i < cbuf.length;i++){
+                    System.out.print(cbuf[i]);
+                }
                 //正确的写法
 //                for(int i = 0;i < len;i++){
 //                    System.out.print(cbuf[i]);
@@ -242,4 +245,63 @@ public class FileReaderWriterTest {
 
     }
 
+
+
+    //对read()操作升级：使用read的重载方法
+    @Test
+    public void testFileReaderDemo() {
+        FileReader fr = null;
+        try {
+            //1.File类的实例化
+            File file = new File("hello.txt");
+
+            //2.FileReader流的实例化
+            fr = new FileReader(file);
+
+            //3.读入的操作
+            //read(char[] cbuf):返回每次读入cbuf数组中的字符的个数。如果达到文件末尾，返回-1
+            char[] cbuf = new char[5];
+            int len;
+            while ((len = fr.read(cbuf)) != -1) {
+                //方式一：
+                //错误的写法
+                for(int i = 0;i < cbuf.length;i++){
+                    System.out.print(cbuf[i]);
+                }
+                //正确的写法
+                String str = new String(cbuf, 0, len);
+                System.out.print(str);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (fr != null) {
+                //4.资源的关闭
+                try {
+                    fr.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
+
+    }
+
+
+    @org.junit.Test
+    public void testList() {
+        List<String> strings = Lists.newArrayList();
+        for (String string : strings) {
+            System.out.println("------");
+        }
+    }
+
+    @org.junit.Test
+    public void testMap() {
+        HashMap map = new HashMap<>();
+        map.put("p1", "NBCNZJD001");
+        map.put("p2", "NBCNZJD002");
+        System.out.println(map.toString());
+    }
 }

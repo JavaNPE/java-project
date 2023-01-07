@@ -7,9 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * @Author HedianTea
@@ -18,6 +16,9 @@ import java.util.Optional;
  * @Description
  */
 public class Test {
+
+    public static final String JISHI = "JISHI";
+    public static final String BIG_DATA = "BIG_DATA";
 
     @org.junit.Test
     public void bigDecimalTest() {
@@ -215,5 +216,86 @@ public class Test {
             s1 = "1";
         }
         System.out.println(s1);
+    }
+
+    @org.junit.Test
+    public void testC() {
+
+        Object o1 = null;
+
+        String s = (String) o1;
+        String s1 = o1.toString();
+        System.out.println("--------------");
+
+    }
+
+    @org.junit.Test
+    public void testD() {
+        Map m = new HashMap();
+//        m.put("1", new Integer(1));
+        m.put("1", null);
+        m.put("2", " ");
+        m.put("3", BigDecimal.valueOf(23.9));
+        System.out.println(m);
+        BigDecimal o1 = (BigDecimal) m.get(2);
+
+        System.out.println("BigDecimalO1:" + Optional.ofNullable(o1).orElse(BigDecimal.ZERO));
+
+        String b = (String) m.get("2");         // 强转
+        System.out.println("b:" + b);
+        String a = m.get("2").toString();      // .toString
+        System.out.println("a:" + a);
+
+        String o = (String) m.get("2");
+        System.out.println("o:" + o);
+//        int i = Integer.parseInt(Optional.ofNullable(o).orElse("0"));
+//        System.out.println(i);
+
+    }
+
+
+    @org.junit.Test
+    public void testE() {
+        BigDecimal b1 = BigDecimal.valueOf(0);
+        BigDecimal b2 = BigDecimal.valueOf(1.90);
+        if (b1.compareTo(BigDecimal.ZERO) > 0) {
+            System.out.println("--------------");
+        }
+    }
+
+    @org.junit.Test
+    public void testF() {
+        String JS = "JISHI";
+        String bigData = "BIG_DATA";
+        if (JISHI.equals(JS)) {
+            System.out.println(JISHI.toLowerCase(Locale.ROOT));
+        }
+        if (BIG_DATA.equals(bigData)) {
+            String s = BIG_DATA.toLowerCase();
+            System.out.println("S:" + s);
+            System.out.println(BIG_DATA.toLowerCase(Locale.ROOT));
+        }
+    }
+
+    @org.junit.Test
+    public void testG() {
+        String s = "20";
+        int i = check(s);
+        System.out.println(i);
+    }
+
+    private int check(String s) {
+        if (StringUtils.isBlank(s)) {
+            return 0;
+        }
+        return Integer.parseInt(s);
+    }
+
+    @org.junit.Test
+    public void testList() {
+        List<String> strings = Lists.newArrayList();
+        for (String string : strings) {
+            System.out.println("------");
+        }
     }
 }

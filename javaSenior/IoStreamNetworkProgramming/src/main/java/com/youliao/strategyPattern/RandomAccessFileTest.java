@@ -1,8 +1,6 @@
 package com.youliao.strategyPattern;
 
-import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
-import org.apache.commons.lang3.StringUtils;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.junit.Test;
 
@@ -12,7 +10,6 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -118,20 +115,29 @@ public class RandomAccessFileTest {
         try (RandomAccessFile raf = new RandomAccessFile("file.txt", "r")) {
             // 行内容
             String line;
+            long length = raf.length();
+//            long nextend = length - 1;
             ArrayList<@Nullable Object> newArrayList = Lists.newArrayList();
             while ((line = raf.readLine()) != null) {
                 // 以“|”进行分割文件中的字符串
                 String[] splitArr = line.split("\\|");
+//                String[] splitArr = line.split("\\@#!");
                 String s0 = splitArr[0];
                 String s1 = splitArr[1];
                 String s2 = splitArr[2];
                 // 第一步：先获取jsonObject对象:JSONObject.parseObject()；
                 String s3 = splitArr[3];
-                //System.out.println("s0:" + s0 + ", s1:" + s1 + ", s2:" + s2 + ", s3:" + s3);
+//                String s4 = splitArr[4].trim();
+//                BigDecimal rate = BigDecimal.ZERO;
+//                if (StringUtils.isNotBlank(splitArr[4])) {
+//                    rate = new BigDecimal("splitArr[4]: " + splitArr[4]);
+//                }
+//                System.out.println(rate);
+                System.out.println("s0:" + s0 + ", s1:" + s1 + ", s2:" + s2 + ", s3:" + s3);
                 // 将JSON转换成List
-                System.out.println("s3:" + s3);
-                HashMap hashMap = JSONObject.parseObject(s3, HashMap.class);
-                String channelNo = (String) hashMap.get("channelNo");
+//                System.out.println("s3:" + s3);
+//                HashMap hashMap = JSONObject.parseObject(s3, HashMap.class);
+//                String channelNo = (String) hashMap.get("channelNo");
                 //System.out.println("channelNo:" + channelNo);
 
                 //System.out.println("map:" + hashMap.toString());
@@ -140,7 +146,7 @@ public class RandomAccessFileTest {
 
                 //List<SmsBeanTest> smsBeanTests = JSONObject.parseArray(s3, SmsBeanTest.class);
                 //System.out.println("smsBeanTests:" + smsBeanTests);
-                Object OS3 = JSONObject.toJSON(s3);
+//                Object OS3 = JSONObject.toJSON(s3);
                 //System.out.println("OS3:" + OS3);
 /*                List<SmsBeanTest> smsBeanTests = JSONObject.parseArray((String) OS3, SmsBeanTest.class);
                 System.out.println(smsBeanTests);*/
@@ -148,6 +154,7 @@ public class RandomAccessFileTest {
                 //System.out.println("objects:" +objects);
                 List<String> strings = Arrays.asList(splitArr);
                 newArrayList.add(strings);
+//                nextend--;
             }
 //            if (CollectionUtils.isNotEmpty(newArrayList)) {
 //                System.out.println(newArrayList.toString());
@@ -155,13 +162,13 @@ public class RandomAccessFileTest {
 //                System.out.println("------------------------");
 //            }
 
-            RandomAccessFile raf2 = new RandomAccessFile("file.txt", "r");
+//            RandomAccessFile raf2 = new RandomAccessFile("file.txt", "r");
 /*            String s = raf2.readLine();
             System.out.println(raf2.readLine());*/
-            String line1;
-            if (StringUtils.isNotBlank(raf2.readLine())) {
+//            String line1;
+/*            if (StringUtils.isNotBlank(raf2.readLine())) {
                 System.out.println("首行内容：" + raf2.readLine());
-            }
+            }*/
 /*            while ((line1 = raf2.readLine()) != null) {
                 System.out.println(raf2.readLine());
             }*/

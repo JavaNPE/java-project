@@ -1,13 +1,9 @@
 package com.youliao.strategyPattern;
 
+import com.youliao.exer.Person;
 import org.junit.Test;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * 一、Map的实现类的结构：
@@ -236,9 +232,12 @@ public class MapTest {
         map = new LinkedHashMap();
         map.put(123, "AA");
         map.put(345, "BB");
-        map.put(12, "CC");
+        map.put(12, null);
 
         System.out.println(map);
+        Object o = map.get(12);
+        String s1 = (String) o;
+        System.out.println(s1);
     }
 
 
@@ -247,5 +246,15 @@ public class MapTest {
         Map map = new HashMap();
         // map = new Hashtable();
         map.put(null, 123);
+    }
+
+    @Test
+    public void testMap() {
+        Map<String, Person> map = new HashMap();
+        map.put("P1",new Person(1,"张1"));
+        map.put("P2",new Person(2,"张2"));
+        map.put("P3",new Person(3,"张3"));
+        System.out.println(map);
+        Person person = map.get(null);
     }
 }
