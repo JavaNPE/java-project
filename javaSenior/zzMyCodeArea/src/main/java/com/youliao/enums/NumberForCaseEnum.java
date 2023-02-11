@@ -3,6 +3,7 @@ package com.youliao.enums;
 import com.google.common.collect.Lists;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,11 +17,12 @@ import java.util.stream.Collectors;
  */
 @Getter
 @AllArgsConstructor
-public enum  NumberForCaseEnum {
+public enum NumberForCaseEnum {
 
-    ONE("NBCBZJD001", "直接贷001"),
-    TWO("NBCBZJD002", "直接贷002"),
-    THREE("NBCBZJD003", "直接贷003");
+    ONE("NBCBZJD001", "直接贷"),
+    TWO("NBCBZJD002", "直接贷（保险）"),
+    THREE("NBCBZJD003", "直接贷B"),
+    ;
 
     private String code;
     private String description;
@@ -44,7 +46,7 @@ public enum  NumberForCaseEnum {
     }
 
     /**
-     * 根据编码code查找枚举
+     * 方式一：根据编码code查找枚举
      * 提前判断，用于解决
      * Case中出现的Constant expression required
      *
@@ -60,9 +62,57 @@ public enum  NumberForCaseEnum {
         return null;
     }
 
+    /**
+     * 方式二：根据编码code查找枚举
+     *
+     * @param code
+     * @return
+     */
     public static NumberForCaseEnum find(String code) {
         return Arrays.stream(NumberForCaseEnum.values())
                 .filter(input -> input.getCode().equals(code))
+                .findFirst()
+                .orElse(null);
+    }
+
+    /**
+     * 类型二：通过枚举名称查询对应的枚举值
+     * numberForCaseEnum.name() 的值 是 ONE、TWO、THREE枚举值（若这些定义的枚举值与入参String name和其code值 一致的话好说）
+     *
+     * @param name
+     * @return
+     */
+    public static NumberForCaseEnum findByName(String name) {
+        for (NumberForCaseEnum numberForCaseEnum : NumberForCaseEnum.values()) {
+            if (StringUtils.equals(numberForCaseEnum.name(), name)) {
+                return numberForCaseEnum;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 类型二：通过枚举对应的枚举描述查找其code值
+     *
+     * @param description
+     * @return
+     */
+    public static NumberForCaseEnum findByDesc(String description) {
+//        NumberForCaseEnum[] values = NumberForCaseEnum.values();
+        for (NumberForCaseEnum instance : NumberForCaseEnum.values()) {
+/*            if(instance.getDescription().equals(description)) {
+                return instance;
+            }*/
+            if(StringUtils.equals(description, instance.getDescription())) {
+                return instance;
+            }
+        }
+        return null;
+    }
+
+    public static NumberForCaseEnum findByDescStream(String desc) {
+        return Arrays.stream(NumberForCaseEnum.values())
+                .filter(e -> e.getDescription().equals(desc))
                 .findFirst()
                 .orElse(null);
     }

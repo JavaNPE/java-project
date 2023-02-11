@@ -251,9 +251,9 @@ public class MapTest {
     @Test
     public void testMap() {
         Map<String, Person> map = new HashMap();
-        map.put("P1",new Person(1,"张1"));
-        map.put("P2",new Person(2,"张2"));
-        map.put("P3",new Person(3,"张3"));
+        //map.put("P1",new Person(1,"张1"));
+        //map.put("P2",new Person(2,"张2"));
+        //map.put("P3",new Person(3,"张3"));
         System.out.println(map);
         Person person = map.get(null);
     }

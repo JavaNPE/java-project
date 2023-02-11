@@ -2,6 +2,7 @@ package com.youliao.java;
 
 import com.google.common.collect.Lists;
 import com.youliao.entity.AttrEntity;
+import com.youliao.enums.NumberForCaseEnum;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -296,6 +297,31 @@ public class Test {
         List<String> strings = Lists.newArrayList();
         for (String string : strings) {
             System.out.println("------");
+        }
+    }
+
+    /**
+     * 测试枚举根据产品编号查询
+     */
+    @org.junit.Test
+    public void testEnum() {
+        /*NumberForCaseEnum nbcbzjd003 = NumberForCaseEnum.find("NBCBZJD003");
+        System.out.println(nbcbzjd003.getCode());
+        NumberForCaseEnum nbcbzjd002 = NumberForCaseEnum.getByCode("NBCBZJD002");
+        System.out.println(nbcbzjd002.getCode());
+        NumberForCaseEnum nbcbzjd002Desc = NumberForCaseEnum.getByCode("NBCBZJD002");
+        System.out.println(nbcbzjd002Desc.getDescription());*/
+        NumberForCaseEnum name = NumberForCaseEnum.findByName("直接贷B");
+        System.out.println(name);
+        NumberForCaseEnum desc = NumberForCaseEnum.findByDesc("直接贷B");
+        //System.out.println(desc.getCode());
+        NumberForCaseEnum 直接贷BC = NumberForCaseEnum.findByDescStream("直接贷（保险）");
+        System.out.println(直接贷BC.getCode());
+        // 枚举类型 使用 ==  预防空指针问题发生
+        if (NumberForCaseEnum.THREE == desc) {
+            System.out.println("直接贷B输出语句");
+        } else {
+            System.out.println("不满足要求输出结果");
         }
     }
 }
