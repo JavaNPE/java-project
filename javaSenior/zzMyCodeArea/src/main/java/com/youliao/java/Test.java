@@ -324,4 +324,28 @@ public class Test {
             System.out.println("不满足要求输出结果");
         }
     }
+
+    @org.junit.Test
+    public void test21() {
+        String str = "1234";
+        int length = str.length();
+        System.out.println("lenght:" + length);
+        StringBuilder sb = new StringBuilder(str);
+
+        String substring = sb.substring(str.length() - 1);
+        System.out.println("subString:" + substring);
+        if ("4".equals(substring)) {
+            sb.replace(str.length() - 1, str.length(), "1");
+            System.out.println("拼接后的sb:" + sb);
+        }
+    }
+
+    @org.junit.Test
+    public void test211() {
+        BigDecimal num = new BigDecimal(0);
+        System.out.println(num);
+        System.out.println("--------");
+        BigDecimal decimal = BigDecimal.ZERO.add(num);
+        System.out.println(num.add(BigDecimal.valueOf(20)));
+    }
 }
