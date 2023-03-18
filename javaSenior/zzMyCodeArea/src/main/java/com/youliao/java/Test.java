@@ -1,6 +1,7 @@
 package com.youliao.java;
 
 import com.google.common.collect.Lists;
+import com.youliao.bean.Employee;
 import com.youliao.entity.AttrEntity;
 import com.youliao.enums.NumberForCaseEnum;
 import org.apache.commons.collections.CollectionUtils;
@@ -347,5 +348,23 @@ public class Test {
         System.out.println("--------");
         BigDecimal decimal = BigDecimal.ZERO.add(num);
         System.out.println(num.add(BigDecimal.valueOf(20)));
+    }
+
+    @org.junit.Test
+    public void testFun() {
+        Employee employee = null;
+        //employee.setId("100001");
+        Optional.ofNullable(employee).ifPresent(employee1 -> {
+            if (employee1 == null) {
+                System.out.println("employee is null");
+            } else {
+                System.out.println(employee1.getId());
+            }
+        });
+
+        /*employee.setName("张三");
+        employee.setSalary(Double.valueOf("900"));
+        employee.fun(employee.getName(), employee.getId(), employee.getSalary());
+        employee.fun(employee.getName(), employee.getSalary(), employee.getId());*/
     }
 }
