@@ -343,11 +343,9 @@ public class Test {
 
     @org.junit.Test
     public void test211() {
-        BigDecimal num = new BigDecimal(0);
-        System.out.println(num);
-        System.out.println("--------");
-        BigDecimal decimal = BigDecimal.ZERO.add(num);
-        System.out.println(num.add(BigDecimal.valueOf(20)));
+        Double d1 = null;
+        BigDecimal bigDecimal = new BigDecimal(d1);
+        System.out.println(bigDecimal);
     }
 
     @org.junit.Test
@@ -366,5 +364,65 @@ public class Test {
         employee.setSalary(Double.valueOf("900"));
         employee.fun(employee.getName(), employee.getId(), employee.getSalary());
         employee.fun(employee.getName(), employee.getSalary(), employee.getId());*/
+    }
+
+    @org.junit.Test
+    public void testStringJoin() {
+
+        //字符串数组
+        String[] strArray = new String[]{"ni", "zhen", "hao", "kan"};
+
+        //字符串队列
+        List<String> strList = new ArrayList<String>();
+        //添加元素
+        strList.add("ni");
+        strList.add("zhen");
+        strList.add("hao");
+        strList.add("kan");
+
+        //第2个参数是字符串数组
+        String a = String.join("!", strArray);
+        //第2个参数是字符串队列
+        String b = String.join("!", strList);
+        //第1个参数之后是多个字符串
+        String c = String.join("!", "ni", "zhen", "hao", "kan");
+
+        System.out.println(a);
+        System.out.println(b);
+        System.out.println(c);
+
+    }
+
+    /**
+     * map get 一个 null  值
+     */
+    @org.junit.Test
+    public void testMapNull() {
+        HashMap hashMap = new HashMap();
+        Object o = hashMap.get(null);
+        System.out.println(o);
+    }
+
+    /**
+     * 大数与null值相加 报空指针
+     */
+    @org.junit.Test
+    public void testBigDecimalAddNull() {
+        BigDecimal bigDecimal = BigDecimal.ONE;
+        BigDecimal sum = bigDecimal.add(null);
+        System.out.println(sum);
+    }
+
+
+    /**
+     * null.subtract(num)
+     */
+    @org.junit.Test
+    public void testBigDecimalNullSubtractNum() {
+        BigDecimal a = null;
+        BigDecimal b = new BigDecimal(3);
+        if (b.compareTo(Optional.ofNullable(a).orElse(BigDecimal.ZERO)) != 0) {
+            System.out.println("嘀嘀嘀");
+        }
     }
 }
