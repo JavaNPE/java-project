@@ -394,12 +394,21 @@ public class Test {
     }
 
     /**
-     * map get 一个 null  值
+     * HashMap get 一个 null  值 可
      */
     @org.junit.Test
-    public void testMapNull() {
+    public void testHashMapNull() {
         HashMap hashMap = new HashMap();
-        Object o = hashMap.get(null);
+        Object o = hashMap.get(null); // HashMap 可以get null
+        System.out.println(o);
+    }
+    /**
+     * Hashtable get 一个 null  值 空指针
+     */
+    @org.junit.Test
+    public void testHashTableNull() {
+        Hashtable<Object, Object> hashtable = new Hashtable<>();
+        Object o = hashtable.get(null); // Hashtable 不可以get null
         System.out.println(o);
     }
 
@@ -408,9 +417,16 @@ public class Test {
      */
     @org.junit.Test
     public void testBigDecimalAddNull() {
-        BigDecimal bigDecimal = BigDecimal.ONE;
-        BigDecimal sum = bigDecimal.add(null);
-        System.out.println(sum);
+        BigDecimal n1 = null;
+        System.out.println("111:" + String.valueOf(n1));
+        System.out.println("222:" + n1.toString());
+
+        BigDecimal b1 = BigDecimal.ONE;
+        BigDecimal b2 = BigDecimal.TEN;
+        BigDecimal b3 = BigDecimal.valueOf(4);
+        BigDecimal add = b2.subtract(b1).add(b3);
+
+        System.out.println(add);
     }
 
 
@@ -424,5 +440,69 @@ public class Test {
         if (b.compareTo(Optional.ofNullable(a).orElse(BigDecimal.ZERO)) != 0) {
             System.out.println("嘀嘀嘀");
         }
+    }
+
+    @org.junit.Test
+    public void testIntOrInteger() {
+        int i1 = 0;
+        System.out.println("i1:" + i1);
+        Integer i2 = null;
+        System.out.println("i2:" + i2);
+    }
+
+    @org.junit.Test
+    public void testBigDecimalAdd() {
+        BigDecimal zero = BigDecimal.ZERO;
+        BigDecimal one = BigDecimal.ONE;
+        BigDecimal ten = BigDecimal.TEN;
+        BigDecimal bigDecimal = BigDecimal.valueOf(22);
+        System.out.println(one.add(ten).add(bigDecimal));
+        System.out.println(bigDecimal.subtract(ten));
+    }
+
+    @org.junit.Test
+    public void ObjestNull() {
+        Employee e1 = new Employee();
+        System.out.println(e1.toString());
+        Employee e2 = null;
+        System.out.println(String.valueOf(e2));
+
+    }
+
+    @org.junit.Test
+    public void TestString() {
+        String s1 = "06";
+        s1 = "05";
+        s1 = "07";
+        System.out.println(s1);
+        System.out.println(s1);
+    }
+
+    @org.junit.Test
+    public void testInteger() {
+        //int i = Integer.parseInt(null);
+
+        Integer i = Integer.valueOf(null);
+        // java.lang.NumberFormatException: null
+        //
+        //	at java.lang.Integer.parseInt(Integer.java:542)
+        //	at java.lang.Integer.valueOf(Integer.java:766)
+        System.out.println(i);
+    }
+
+    @org.junit.Test
+    public void testApiBigDeciaml() {
+        // BigDecimal s = BigDecimal.ZERO;
+        // System.out.println(BigDecimal.ZERO.equals(s) ? null : 3); //null
+
+/*        BigDecimal s = BigDecimal.ZERO;
+        System.out.println(BigDecimal.ZERO == s ? null : 3); // null*/
+
+        BigDecimal s = new BigDecimal(0);
+        if (s == BigDecimal.ZERO) {
+            System.out.println("--------------");
+        }
+        System.out.println(BigDecimal.ZERO == s ? null : 3); // 3
+
     }
 }
