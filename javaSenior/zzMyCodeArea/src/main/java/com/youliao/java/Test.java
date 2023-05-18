@@ -505,4 +505,26 @@ public class Test {
         System.out.println(BigDecimal.ZERO == s ? null : 3); // 3
 
     }
+    @org.junit.Test
+    public void testNullReduce() {
+        List<Employee> employee = Lists.newArrayList();
+        BigDecimal sum = employee.stream()
+                .map(Employee::getRepayLateFee)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        System.out.println(sum);
+    }
+
+    /**
+     * String.format()字符拼串
+     */
+    @org.junit.Test
+    public void stringFormat() {
+        String tendId = "000";
+        String flag = String.valueOf("1");
+        String dateStr = String.valueOf("20230517");
+        String productId= "NBCBZJDBZX001";
+        String serialNo = String.format("%s%s%s%s", tendId,flag,dateStr,productId);
+        System.out.println(serialNo);
+        System.out.println(tendId+flag+dateStr+productId);
+    }
 }
