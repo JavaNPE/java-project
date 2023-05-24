@@ -61,3 +61,5 @@ RjavaSenior/commonClass/src/main/java/com/youliao/strategyPattern/DateTimeTest.j
 ]javaSenior/commonClass/src/main/java/com/youliao/strategyPattern/StringBufferBuilderTest.java,a\a\aa0ad43abd28012c8639ff5e4a47edd1f4e2d409
 v
 FdataStructure/src/main/java/com/hediantea/sparsearray/SparseArray.java,c\2\c22533f893f8ed495bc272ad8b42caf4f5d5f84a
+
+OjavaSenior/dynamicProxyAndJava8/src/main/java/com/youliao/java1/LambdaTest.java,a\5\a5c3726885c680c84157a8561a393bb06e3ba41b

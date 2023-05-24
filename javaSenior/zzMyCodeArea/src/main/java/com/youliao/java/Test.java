@@ -505,6 +505,7 @@ public class Test {
         System.out.println(BigDecimal.ZERO == s ? null : 3); // 3
 
     }
+
     @org.junit.Test
     public void testNullReduce() {
         List<Employee> employee = Lists.newArrayList();
@@ -522,9 +523,57 @@ public class Test {
         String tendId = "000";
         String flag = String.valueOf("1");
         String dateStr = String.valueOf("20230517");
-        String productId= "NBCBZJDBZX001";
-        String serialNo = String.format("%s%s%s%s", tendId,flag,dateStr,productId);
+        String productId = "NBCBZJDBZX001";
+        String serialNo = String.format("%s%s%s%s", tendId, flag, dateStr, productId);
         System.out.println(serialNo);
-        System.out.println(tendId+flag+dateStr+productId);
+        System.out.println(tendId + flag + dateStr + productId);
+    }
+
+    @org.junit.Test
+    public void testTest() {
+        String str = null;
+
+        System.out.println(String.valueOf(str));
+        // System.out.println(str.toString()); java.lang.NullPointerException
+
+    }
+
+    @org.junit.Test
+    public void TestNull() {
+        String str = null;
+        Integer itr = null;
+        Double dou = null;
+
+        Integer integer = (Integer) null;
+        String string = (String) null;
+
+        System.out.println("integer = " + integer);
+        System.out.println("string = " + string);
+
+        Integer isNull = null;
+        // instanceof = isInstance 方法
+        // 使用了带有 null 值的引用类型变量，instanceof 操作会返回 false
+        // 这是 instanceof 操作符一个很重要的特性，使得对类型强制转换检查很有用
+        if (isNull instanceof Integer) {
+            System.out.println("isNull is instanceof Integer");
+        } else {
+            System.out.println("isNull is not instanceof Integer");
+        }
+    }
+
+    // number 没有赋值，所以默认为null
+    private static String number;
+
+    /**
+     * number 没有赋值，所以默认为null，使用String.value(number) 静态方法没有抛出空指针异常，
+     * 但是使用 toString() 却抛出了空指针异常。所以尽量使用对象的静态方法。
+     */
+    @org.junit.Test
+    public void TestNullSafeMethod() {
+        System.out.println("number: " + number);
+        String s = String.valueOf(number);
+        String string = number.toString();
+        System.out.println("s = " + s);
+        System.out.println("string = " + string);
     }
 }
