@@ -2,6 +2,7 @@ package com.youliao.java;
 
 import com.google.common.collect.Lists;
 import com.youliao.bean.Employee;
+import com.youliao.bean.User;
 import com.youliao.entity.AttrEntity;
 import com.youliao.enums.NumberForCaseEnum;
 import org.apache.commons.collections.CollectionUtils;
@@ -509,6 +510,7 @@ public class Test {
     @org.junit.Test
     public void testNullReduce() {
         List<Employee> employee = Lists.newArrayList();
+        // employee.get(0).setRepayLateFee(null);
         BigDecimal sum = employee.stream()
                 .map(Employee::getRepayLateFee)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
@@ -575,5 +577,11 @@ public class Test {
         String string = number.toString();
         System.out.println("s = " + s);
         System.out.println("string = " + string);
+    }
+    
+    @org.junit.Test
+    public void testObjectNull() {
+        User user = null;
+        System.out.println(user.toString());
     }
 }
