@@ -12,6 +12,7 @@
         <module>javaBasics</module>
         <module>javaSenior</module>
         <module>dataStructure</module>
+        <module>interview</module>
     </modules>
     <dependencies>
         <!--使用CollectionUtils工具类需要导入以下依赖包

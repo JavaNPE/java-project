@@ -21,6 +21,7 @@
         <module name="IoStreamNetworkProgramming" />
         <module name="enumAndAnnotation" />
         <module name="map" />
+        <module name="interview" />
       </profile>
     </annotationProcessing>
   </component>
