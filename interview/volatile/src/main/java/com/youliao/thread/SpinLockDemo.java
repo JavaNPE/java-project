@@ -1,4 +1,4 @@
-package com.youliao.thread;
+package main.java.com.youliao.thread;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;

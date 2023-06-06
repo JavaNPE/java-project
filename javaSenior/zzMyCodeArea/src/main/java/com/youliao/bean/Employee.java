@@ -19,7 +19,7 @@ public class Employee implements Comparable<Employee> {
     private String name;
     private String id;
     private Double salary;
-    private BigDecimal repayLateFee;
+    private BigDecimal repayLateFee = BigDecimal.ZERO;
 
 
     @Override

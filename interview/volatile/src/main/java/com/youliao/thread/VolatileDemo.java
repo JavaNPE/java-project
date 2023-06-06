@@ -1,4 +1,6 @@
-package com.youliao.thread;
+package main.java.com.youliao.thread;
+
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -11,15 +13,15 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 
 class MyData {
-    //int number = 0;
-    volatile int number = 0;    //volatile增强了 主内存和各线程之间的可见性
+    //int number = 0;  // 方式一：
+    volatile int number = 0;    //方式二：volatile增强了 主内存和各线程之间的可见性
 
     public void addT060() {
         this.number = 60;
     }
 
-    //请注意，此时number前面是加了volatile关键字修饰的，volatile不保证原子性
-//    public synchronized void addPlusPlus() {    //添加synchronized测试  输出：“main	 finally number value: 20000”
+    // 请注意，此时number前面是加了volatile关键字修饰的，volatile不保证原子性
+    // public synchronized void addPlusPlus() {    // 添加synchronized测试  输出：“main	 finally number value: 20000”
     public void addPlusPlus() {
         number++;
     }
@@ -44,10 +46,11 @@ class MyData {
  * 方式一：使用synchronized关键字（但是容易杀鸡用候刀，高射炮打蚊子）
  * 方式二：使用我们的juc下的AtomicInteger
  */
+@Slf4j
 public class VolatileDemo {
     public static void main(String[] args) {
-        //seOkByVolatile(); //验证volatile的可见性;
-        MyData myData = new MyData();
+        setOkByVolatile(); //验证volatile的可见性;
+        /*MyData myData = new MyData();
         for (int i = 0; i < 20; i++) {
             new Thread(() -> {
                 for (int j = 1; j <= 1000; j++) {
@@ -55,14 +58,15 @@ public class VolatileDemo {
                     myData.addAtomic();     //保证原子性
                 }
             }, String.valueOf(i)).start();
-        }
+        }*/
 
         //需要等待上面20个线程都全部计算完成后，在用main线程取得最终的结果值看是多少？
-        while (Thread.activeCount() > 2) {  // >2  idea本身有一个 main线程
+       /*  while (Thread.activeCount() > 2) {  // >2  idea本身有一个 main线程
             Thread.yield();
         }
-        System.out.println(Thread.currentThread().getName() + "\t int type,finally number value: " + myData.number);
+       System.out.println(Thread.currentThread().getName() + "\t int type,finally number value: " + myData.number);
         System.out.println(Thread.currentThread().getName() + "\t AtomicInteger type,finally number value: " + myData.atomicInteger);
+        */
 /*        try {   //暂停一会线程
             TimeUnit.SECONDS.sleep(5);  //5秒
         } catch (InterruptedException e) {
@@ -70,8 +74,8 @@ public class VolatileDemo {
         }*/
     }
 
-    //volatile可以保证可见性，及时通知其它线程，主物理内 存的值已经被修改。
-    private static void seOkByVolatile() {
+    // volatile可以保证可见性，及时通知其它线程，主物理内 存的值已经被修改。
+    private static void setOkByVolatile() {
         MyData myData = new MyData();       //资源类
         new Thread(() -> {      //线程1 AAA
             System.out.println(Thread.currentThread().getName() + "\t come in");
@@ -87,8 +91,12 @@ public class VolatileDemo {
         //第2个线程就是我们的main线程
         while (myData.number == 0) {
             // main线程就一一直再这里等待循环，直到number 值不再等于零。
+            // 如果在这个循环体中打印 System.out.println("number:"+ myData.number); 为何会被main 线程感知到？
+            // log.info("循环等待中");
+
         }
-        System.out.println(Thread.currentThread().getName() + "\t 任务完成, main get number value:" + myData.number); //如果打印的是60 则感知 myData已被修改
+        // 如果打印的是60 则感知 myData 已被修改
+        System.out.println(Thread.currentThread().getName() + "\t 任务完成, main get number value:" + myData.number);
     }
 }
 

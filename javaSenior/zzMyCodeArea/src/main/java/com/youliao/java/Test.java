@@ -1,12 +1,16 @@
 package com.youliao.java;
 
+import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
 import com.youliao.bean.Employee;
 import com.youliao.bean.User;
 import com.youliao.entity.AttrEntity;
+import com.youliao.enums.EnumProductIdSummery;
 import com.youliao.enums.NumberForCaseEnum;
+import com.youliao.utils.BigDecimalUtil;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.junit.Assert;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -584,4 +588,69 @@ public class Test {
         User user = null;
         System.out.println(user.toString());
     }
+
+    @org.junit.Test
+    public void TestMapNull() {
+        Map map = new HashMap();
+        Object o = map.get(null);
+        System.out.println(o);
+/*        map.put("AA", 123);
+        map.put(45, 123);
+        map.put("BB", 56);*/
+    }
+
+    @org.junit.Test
+    public void TestNull2() {
+        Employee employee = new Employee();
+        employee.setRepayLateFee(null);
+        BigDecimal repayLateFee = BigDecimalUtil.defaultZero(employee.getRepayLateFee()).add(BigDecimal.ZERO);
+
+        System.out.println(repayLateFee);
+    }
+
+    @org.junit.Test
+    public void testMap() {
+        String s = EnumProductIdSummery.NBCBZJD001.getCode();
+        if (s.equals(EnumProductIdSummery.NBCBZJD001.getCode())) {
+            s = EnumProductIdSummery.NBCBZJD003.getCode();
+        }
+        System.out.println(s);
+    }
+
+    @org.junit.Test
+    public void testOptional() {
+        Optional<Integer> possible = Optional.of(5);
+        System.out.println(possible.isPresent()); // ture
+        Integer integer = possible.get();
+        System.out.println(integer);
+    }
+
+    /**
+     * 字符串表示字符的不可变序列，创建后就不能更改。在我们日常的工作中，字符串的使用非常频繁，熟练的对其操作可以极大的提升我们的工作效率。
+     * <p>
+     * 我提供了连接器——Joiner，可以用分隔符把字符串序列连接起来。下面的代码将会返回“雷军; 乔布斯”，你可以使用 useForNull(String)
+     * 方法用某个字符串来替换 null，而不像 skipNulls() 方法那样直接忽略 null。
+     */
+    @org.junit.Test
+    public void testJoinerSkipNulls() {
+        //Joiner joiner = Joiner.on("; ").skipNulls();
+        Joiner joiner = Joiner.on(";").skipNulls();
+        String join = joiner.join("罗辑", null, "大史");
+        System.out.println(join);
+
+        // 方式二：
+        // 跳过 null 值
+        String result = Joiner.on("; ").skipNulls().join("Harry", null, "Ron", "Hermione");
+        Assert.assertEquals(result, "Harry; Ron; Hermione");
+
+    }
+    @org.junit.Test
+    public void testJoinerUseForNull() {
+        // 替换 null 值
+        String result = Joiner.on("; ").useForNull("null").join("Harry", null, "Ron", "Hermione");
+        // 断言
+        Assert.assertEquals(result, "Harry; null; Ron; Hermione");
+        System.out.println(result);
+    }
+
 }
