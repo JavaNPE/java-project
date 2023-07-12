@@ -1,4 +1,4 @@
-package com.youliao.thread;
+package main.java.com.youliao.thread;
 
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;

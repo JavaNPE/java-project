@@ -1,4 +1,4 @@
-package com.youliao.thread;
+package main.java.com.youliao.thread;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;

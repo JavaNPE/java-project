@@ -1,4 +1,4 @@
-package jvm.gcroots;
+package main.java.jvm.gcroots;
 
 /**
  * @Author Dali

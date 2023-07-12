@@ -1,8 +1,10 @@
 package com.youliao.java;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
 import com.youliao.bean.Employee;
+import com.youliao.bean.Student;
 import com.youliao.bean.User;
 import com.youliao.entity.AttrEntity;
 import com.youliao.enums.EnumProductIdSummery;
@@ -10,11 +12,14 @@ import com.youliao.enums.NumberForCaseEnum;
 import com.youliao.utils.BigDecimalUtil;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateUtils;
 import org.junit.Assert;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * @Author HedianTea
@@ -407,6 +412,7 @@ public class Test {
         Object o = hashMap.get(null); // HashMap 可以get null
         System.out.println(o);
     }
+
     /**
      * Hashtable get 一个 null  值 空指针
      */
@@ -515,9 +521,7 @@ public class Test {
     public void testNullReduce() {
         List<Employee> employee = Lists.newArrayList();
         // employee.get(0).setRepayLateFee(null);
-        BigDecimal sum = employee.stream()
-                .map(Employee::getRepayLateFee)
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        BigDecimal sum = employee.stream().map(Employee::getRepayLateFee).reduce(BigDecimal.ZERO, BigDecimal::add);
         System.out.println(sum);
     }
 
@@ -582,7 +586,7 @@ public class Test {
         System.out.println("s = " + s);
         System.out.println("string = " + string);
     }
-    
+
     @org.junit.Test
     public void testObjectNull() {
         User user = null;
@@ -644,6 +648,7 @@ public class Test {
         Assert.assertEquals(result, "Harry; Ron; Hermione");
 
     }
+
     @org.junit.Test
     public void testJoinerUseForNull() {
         // 替换 null 值
@@ -651,6 +656,89 @@ public class Test {
         // 断言
         Assert.assertEquals(result, "Harry; null; Ron; Hermione");
         System.out.println(result);
+    }
+
+    /**
+     * System.nanoTime提供相对精确的计时，但是不能用他来计算当前日期，在jdk中的说明如下：
+     * 返回最准确的可用系统计时器的当前值，以毫微秒为单位。
+     * 此方法只能用于测量已过的时间，与系统或钟表时间的其他任何时间概念无关。返回值表示从某一固定但任意的时间算起的毫微秒数（或许从以后算起，
+     * 所以该值可能为负）。此方法提供毫微秒的精度，但不是必要的毫微秒的准确度。它对于值的更改频率没有作出保证。
+     * 在取值范围大于约 292 年（263 毫微秒）的连续调用的不同点在于：由于数字溢出，将无法准确计算已过的时间。
+     */
+    @org.junit.Test
+    public void testSystemFunction() {
+        long startTime = System.nanoTime();
+        long endTime = System.nanoTime();
+        long timeStart = System.currentTimeMillis();
+        long timeEnd = System.currentTimeMillis();
+
+        long l1 = 4;
+        long l2 = 9;
+        System.out.println(endTime - startTime);
+        System.out.println(timeEnd - timeStart);
+        System.out.println(l2 - l1);
+
+        long date = new Date().getTime();
+        int i = 3;
+        long fragmentInDays = DateUtils.getFragmentInDays(new Date(), Calendar.YEAR);
+        System.out.println("fragmentInDays:" + fragmentInDays);
+    }
+
+    @org.junit.Test
+    public void testStr() {
+        Employee employee = new Employee();
+        employee.setName("科目" + 1 + "余额");
+        System.out.println(employee);
+        String str = "JISHI";
+        if (JISHI.equals(str)) {
+            System.out.println("__________");
+        }
+    }
+
+    //jackson 多字段
+    @org.junit.Test
+    public void testJackson02() throws Exception {
+        String jsonStr = "{\"age\":20,\"name\":\"lisi\",\"sex\":\"男\",\"hobby\":\"basketball\"}";
+        ObjectMapper om = new ObjectMapper();
+        Student stu = om.readValue(jsonStr, Student.class);
+        System.out.println(stu);
+    }
+
+    @org.junit.Test
+    public void testListAdd() {
+        List list = Lists.newArrayList();
+        list.add("测试1");
+        list.add("测试2");
+        list.add("测试3");
+        System.out.println(list);
+
+        List list2 = Lists.newArrayList();
+        //list2.add("22222");
+        /*list.addAll(list2);
+        System.out.println(list)*/;
+        List list3 = null;
+        if (CollectionUtils.isNotEmpty(list3)) {
+            list.addAll(list3);
+        }
+        System.out.println(list);
+
+    }
+
+    @org.junit.Test
+    public void test111() {
+        Integer i1 = null;
+        //String str = String.valueOf(i1);
+        String str = i1.toString(); //npe
+        System.out.println(str);
+    }
+
+    @org.junit.Test
+    public void testMapNull() {
+        List<Employee> list = Lists.newArrayList();
+        Map<String, Employee> employeeMap =
+                list.stream().collect(Collectors.toMap(Employee::getId, Function.identity(), (a, b) -> b));
+        Employee employee = employeeMap.get(1);
+        System.out.println(employee);
     }
 
 }

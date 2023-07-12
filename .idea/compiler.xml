@@ -24,5 +24,8 @@
         <module name="interview" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="third_quarter" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

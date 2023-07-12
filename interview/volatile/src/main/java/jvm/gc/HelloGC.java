@@ -1,4 +1,4 @@
-package jvm.gc;
+package main.java.jvm.gc;//package jvm.gc;
 
 /**
  * @Author Dali

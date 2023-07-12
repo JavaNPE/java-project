@@ -1,4 +1,4 @@
-package com.youliao.thread;
+package main.java.com.youliao.thread;
 
 import lombok.AllArgsConstructor;
 import lombok.ToString;
