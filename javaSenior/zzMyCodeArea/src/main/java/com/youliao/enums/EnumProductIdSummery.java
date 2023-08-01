@@ -16,7 +16,8 @@ public enum EnumProductIdSummery {
 
     NBCBZJD002("NBCBZJD002", "直接贷(保险)"),
 
-    NBCBZJD003("NBCBZJD003", "直接贷B");
+    NBCBZJD003("NBCBZJD003", "直接贷B"),
+    NBCBZJD004("NBCBZJD004", "直接贷(保险)");
 
 
     private String code;

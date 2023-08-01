@@ -1,4 +1,4 @@
-package com.youliao.java;
+package main.java.com.youliao.java;
 
 /**
  * @Author Dali

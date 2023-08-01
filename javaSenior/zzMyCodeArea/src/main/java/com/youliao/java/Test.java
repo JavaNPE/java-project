@@ -7,9 +7,11 @@ import com.youliao.bean.Employee;
 import com.youliao.bean.Student;
 import com.youliao.bean.User;
 import com.youliao.entity.AttrEntity;
+import com.youliao.enums.EnumBool;
 import com.youliao.enums.EnumProductIdSummery;
 import com.youliao.enums.NumberForCaseEnum;
 import com.youliao.utils.BigDecimalUtil;
+import com.youliao.utils.DateUtil;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
@@ -739,6 +741,38 @@ public class Test {
                 list.stream().collect(Collectors.toMap(Employee::getId, Function.identity(), (a, b) -> b));
         Employee employee = employeeMap.get(1);
         System.out.println(employee);
+    }
+    @org.junit.Test
+    public void test1(){
+        String str = null;
+        EnumProductIdSummery summery =  EnumProductIdSummery.find("NBCBZJD004");
+        switch (summery) {
+            case NBCBZJD001:
+                str = summery.getCode();
+                break;
+            case NBCBZJD002:
+                str = summery.getCode();
+                break;
+            default:
+                str = EnumProductIdSummery.NBCBZJD003.getCode();
+                break;
+        }
+        System.out.println(str);
+    }
+
+    @org.junit.Test
+    public void test222() {
+        boolean b = EnumBool.YES == EnumBool.find("1");
+        if (b) {
+            System.out.println("------------");
+        }
+        System.out.println("+++++++++++++++++++++");
+    }
+
+    @org.junit.Test
+    public void testDate() {
+        Date startTimeOfDay = DateUtil.getStartTimeOfDay(DateUtils.getFragmentInDays()));
+
     }
 
 }
