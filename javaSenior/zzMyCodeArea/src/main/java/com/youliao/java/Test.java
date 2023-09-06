@@ -11,7 +11,6 @@ import com.youliao.enums.EnumBool;
 import com.youliao.enums.EnumProductIdSummery;
 import com.youliao.enums.NumberForCaseEnum;
 import com.youliao.utils.BigDecimalUtil;
-import com.youliao.utils.DateUtil;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
@@ -712,17 +711,12 @@ public class Test {
         list.add("测试1");
         list.add("测试2");
         list.add("测试3");
-        System.out.println(list);
+        //System.out.println(list);
 
-        List list2 = Lists.newArrayList();
-        //list2.add("22222");
-        /*list.addAll(list2);
-        System.out.println(list)*/;
-        List list3 = null;
-        if (CollectionUtils.isNotEmpty(list3)) {
-            list.addAll(list3);
-        }
-        System.out.println(list);
+        Object collect = list.stream()
+                .filter(input -> !input.equals("测试1"))
+                .collect(Collectors.toList());
+        System.out.println(collect.toString());
 
     }
 
@@ -742,10 +736,11 @@ public class Test {
         Employee employee = employeeMap.get(1);
         System.out.println(employee);
     }
+
     @org.junit.Test
-    public void test1(){
+    public void test1() {
         String str = null;
-        EnumProductIdSummery summery =  EnumProductIdSummery.find("NBCBZJD004");
+        EnumProductIdSummery summery = EnumProductIdSummery.find("NBCBZJD004");
         switch (summery) {
             case NBCBZJD001:
                 str = summery.getCode();
@@ -770,9 +765,46 @@ public class Test {
     }
 
     @org.junit.Test
-    public void testDate() {
-        Date startTimeOfDay = DateUtil.getStartTimeOfDay(DateUtils.getFragmentInDays()));
+    public void testDemo() {
 
+        List list = Lists.newArrayList();
+        if (CollectionUtils.isEmpty(list)) {
+            System.out.println(list.size());
+            System.out.println("--------------");
+        } else {
+            System.out.println("--------list为null------");
+        }
     }
 
+    @org.junit.Test
+    public void testEnum2() {
+        EnumProductIdSummery nbcbzjd003 = EnumProductIdSummery.valueOf("NBCBZJD003");
+        if (EnumProductIdSummery.NBCBZJD003.equals(nbcbzjd003)) {
+            System.out.println("---------------");
+        }
+    }
+
+    @org.junit.Test
+    public void testNewNull() {
+        BigDecimal bigDecimal = new BigDecimal(0);
+        BigDecimal zero = BigDecimal.TEN;
+        BigDecimal a = null;
+        BigDecimal subtract = a.subtract(zero);
+        System.out.println(subtract);
+
+        System.out.println(bigDecimal);
+    }
+
+    @org.junit.Test
+    public void testNullStr() {
+        ArrayList<String> list = new ArrayList<String>(Arrays.asList("a", "b", "c", "d"));
+        for (String s : list) {
+            if (s.equals("a"))
+                list.remove(s);
+            for (String s1 : list) {
+                System.out.println(s);
+            }
+        }
+
+    }
 }
