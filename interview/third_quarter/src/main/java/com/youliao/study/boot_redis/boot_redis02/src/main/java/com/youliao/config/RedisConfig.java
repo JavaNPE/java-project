@@ -1,4 +1,4 @@
-package main.java.com.youliao.study.boot_redis.boot_redis02.src.main.java.com.youliao.config;
+package java.com.youliao.config;
 
 
 import org.springframework.context.annotation.Bean;

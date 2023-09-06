@@ -179,8 +179,6 @@ Winterview/third_quarter/src/main/java/com/youliao/study/boot_redis/boot_redis02
 Sinterview/volatile/src/main/java/com/youliao/thread/ProdConsumer_TraditionDemo.java,8\1\81ef3f9482923010cf6519bfbeef98317d64df3b
 z
 Jinterview/volatile/src/main/java/com/youliao/thread/ReadWriteLockDemo.java,6\c\6c85a645d0298832e2dbe7f5ba207ed943ed54b0
-≤
-Åinterview/third_quarter/src/main/java/com/youliao/study/boot_redis/boot_redis02/src/main/java/com/youliao/config/RedisConfig.java,0\a\0adecb39bb9da566fe8fd781be66a811b3920222
 Ø
 interview/third_quarter/src/main/java/com/youliao/study/boot_redis/boot_redis01/src/main/java/com/youliao/utils/RedisUtils.java,d\6\d6adabbff7dc294fc82585f75be436544d1c37eb
 x
@@ -211,8 +209,6 @@ p
 @javaSenior/zzMyCodeArea/src/main/java/com/youliao/bean/User.java,e\d\ed3f1e5df9f1cd6dca1048fdc4c1b8b815f1eaf7
 t
 DjavaSenior/zzMyCodeArea/src/main/java/com/youliao/bean/Employee.java,f\3\f355d4b535d4e327e2b44083a6e636a51d76624d
-≤
-Åinterview/third_quarter/src/main/java/com/youliao/study/boot_redis/boot_redis01/src/main/java/com/youliao/config/RedisConfig.java,6\c\6cec4f51ea9fdd87e0bd4d95a0427f67a2a5031d
 }
 Minterview/volatile/src/main/java/com/youliao/thread/SynchronousQueueDemo.java,7\1\715b4ecd2a976c8423a1e3371e3984a0695570a5
 π
@@ -229,10 +225,6 @@ EjavaSenior/zzMyCodeArea/src/main/java/com/youliao/enums/EnumBool.java,2\9\29c1
 QjavaSenior/zzMyCodeArea/src/main/java/com/youliao/enums/EnumProductIdSummery.java,4\b\4b62ea7b58ea69c62a5f073868e2627c51ed6c9f
 O
 javaSenior/zzMyCodeArea/pom.xml,e\b\eba859972c95137e2398621569cf1eb36a5ae24c
-∂
-Öinterview/third_quarter/src/main/java/com/youliao/study/boot_redis/boot_redis01/src/main/java/com/youliao/BootRedis01Application.java,9\c\9c502ad0ac7427807573113cb56e7fb07ddd0c69
-π
-àinterview/third_quarter/src/main/java/com/youliao/study/boot_redis/boot_redis01/src/main/java/com/youliao/controller/GoodController.java,0\a\0a2f52ef51c40022fe24a30f349073a0639d8a2b
 A
 interview/pom.xml,4\d\4d3e7bdebeb294863f08b275a11c227961a8cab2
 J
