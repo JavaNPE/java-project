@@ -20,6 +20,8 @@ public class Employee implements Comparable<Employee> {
     private String id;
     private Double salary;
     private BigDecimal repayLateFee = BigDecimal.ZERO;
+    // 成员变量
+    private int num;
 
 
     @Override
@@ -38,6 +40,7 @@ public class Employee implements Comparable<Employee> {
     public void fun(String name, String id, Double salary) {
         System.out.println("name:" + name + "," + "id:" + id + "," + salary);
     }
+
     public void fun(String name, Double salary, String productId) {
         System.out.println("name:" + name + "," + "id:" + id + "," + salary);
     }

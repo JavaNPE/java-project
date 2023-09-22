@@ -11,6 +11,8 @@ import com.youliao.enums.EnumBool;
 import com.youliao.enums.EnumProductIdSummery;
 import com.youliao.enums.NumberForCaseEnum;
 import com.youliao.utils.BigDecimalUtil;
+import jdk.nashorn.internal.runtime.logging.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
@@ -28,6 +30,8 @@ import java.util.stream.Collectors;
  * @Version 1.0
  * @Description
  */
+@Logger
+@Slf4j
 public class Test {
 
     public static final String JISHI = "JISHI";
@@ -176,7 +180,8 @@ public class Test {
             }
             // 下面这行代码会被sonar检测有问题，因为在对Optional对象使用get前没有使用 isPresent()进行校验
             // Optional对象来源因为用了Stream 的 min 方法，其返回值是 Optional类型的
-            EnterpriseSolutionsSeq solutionsSeq = seqList.stream().filter(Objects::nonNull).min(Comparator.comparing(EnterpriseSolutionsSeq::getSeq)).get();
+            EnterpriseSolutionsSeq solutionsSeq = seqList.stream().filter(Objects::nonNull).min(Comparator.comparing
+            (EnterpriseSolutionsSeq::getSeq)).get();
             return solutionsSeq.getSeq();
         }
     }
@@ -188,7 +193,8 @@ public class Test {
                 return null;
             }
 
-            Optional<EnterpriseToolsSeq> min = toolsSeqList.stream().filter(Objects::nonNull).min(Comparator.comparing(EnterpriseToolsSeq::getSeq));
+            Optional<EnterpriseToolsSeq> min = toolsSeqList.stream().filter(Objects::nonNull).min(Comparator
+            .comparing(EnterpriseToolsSeq::getSeq));
             if(min.isPresent()){
                 return min.get().getSeq();
             }
@@ -713,9 +719,7 @@ public class Test {
         list.add("测试3");
         //System.out.println(list);
 
-        Object collect = list.stream()
-                .filter(input -> !input.equals("测试1"))
-                .collect(Collectors.toList());
+        Object collect = list.stream().filter(input -> !input.equals("测试1")).collect(Collectors.toList());
         System.out.println(collect.toString());
 
     }
@@ -731,8 +735,8 @@ public class Test {
     @org.junit.Test
     public void testMapNull() {
         List<Employee> list = Lists.newArrayList();
-        Map<String, Employee> employeeMap =
-                list.stream().collect(Collectors.toMap(Employee::getId, Function.identity(), (a, b) -> b));
+        Map<String, Employee> employeeMap = list.stream().collect(Collectors.toMap(Employee::getId,
+                Function.identity(), (a, b) -> b));
         Employee employee = employeeMap.get(1);
         System.out.println(employee);
     }
@@ -799,12 +803,88 @@ public class Test {
     public void testNullStr() {
         ArrayList<String> list = new ArrayList<String>(Arrays.asList("a", "b", "c", "d"));
         for (String s : list) {
-            if (s.equals("a"))
-                list.remove(s);
+            if (s.equals("a")) list.remove(s);
             for (String s1 : list) {
                 System.out.println(s);
             }
         }
-
     }
+
+    @org.junit.Test
+    public void test() {
+        boolean flag = false;
+        for (int i = 0; i <= 3; i++) {
+            if (i == 0) {
+                System.out.println("0");
+            } else if (i == 1) {
+                System.out.println("1");
+                continue;
+            } else if (i == 2) {
+                System.out.println("2");
+                flag = true;
+            } else if (i == 3) {
+                System.out.println("3");
+                break;
+            } else if (i == 4) {
+                System.out.println("4");
+            }
+            System.out.println("xixi");
+        }
+        if (flag) {
+            System.out.println("haha");
+            return;
+        }
+        System.out.println("heihei");
+    }
+
+    @org.junit.Test
+    public void testArrays() {
+        List<String> strings = Arrays.asList("1", "2", "AC");
+        // strings.add("BB"); // UnsupportedOperationException
+        System.out.println(strings);
+    }
+
+    @org.junit.Test
+    public void testInteger2() {
+        // 包装类默认值问题
+        Integer integer = null;
+        System.out.println(integer);
+    }
+
+    /**
+     * 超过 long 整型的数据应该如何表示？
+     * 基本数值类型都有一个表达范围，如果超过这个范围就会有数值溢出的风险。
+     * <p>
+     * 在 Java 中，64 位 long 整型是最大的整数类型。
+     * <p>
+     * BigInteger 内部使用 int[] 数组来存储任意大小的整形数据。
+     * <p>
+     * 相对于常规整数类型的运算来说，BigInteger 运算的效率会相对较低。
+     */
+    @org.junit.Test
+    public void testLong2() {
+        long l = Long.MAX_VALUE;
+        System.out.println("l:" + l); // 9223372036854775807
+        System.out.println(l + 1); // -9223372036854775808
+        System.out.println(l + 1 == Long.MIN_VALUE); // true
+        System.out.println(l == Long.MAX_VALUE); // true
+        log.info("l的值为:" + l);
+    }
+
+    @org.junit.Test
+    public void testDefault() {
+        Employee employee = new Employee();
+        System.out.println(employee.getNum());
+    }
+    @org.junit.Test
+    public void testStaticMethod() {
+        /*Person person = new Person();
+        Person.staticMethod();*/
+        System.out.println("a"+"b");
+    }
+
+
+
+
+
 }
