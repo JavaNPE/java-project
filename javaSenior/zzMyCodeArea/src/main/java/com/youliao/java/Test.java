@@ -1,8 +1,10 @@
 package com.youliao.java;
 
+import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
+import com.google.gson.Gson;
 import com.youliao.bean.Employee;
 import com.youliao.bean.Student;
 import com.youliao.bean.User;
@@ -11,9 +13,11 @@ import com.youliao.enums.EnumBool;
 import com.youliao.enums.EnumProductIdSummery;
 import com.youliao.enums.NumberForCaseEnum;
 import com.youliao.utils.BigDecimalUtil;
+import com.youliao.utils.GsonUtil;
 import jdk.nashorn.internal.runtime.logging.Logger;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections.map.HashedMap;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.junit.Assert;
@@ -876,15 +880,120 @@ public class Test {
         Employee employee = new Employee();
         System.out.println(employee.getNum());
     }
+
     @org.junit.Test
     public void testStaticMethod() {
         /*Person person = new Person();
         Person.staticMethod();*/
-        System.out.println("a"+"b");
+        System.out.println("a" + "b");
+    }
+
+    @org.junit.Test
+    public void testDat() {
+        String s = null;
+        BigDecimal bigDecimal = new BigDecimal(s);
+        System.out.println(bigDecimal);
+    }
+
+    @org.junit.Test
+    public void test31231() {
+        String s1 = ",,";
+        List<String> s3 = Arrays.asList("4");
+        System.out.println("s3:" + s3);
+
+        List<String> s2 = Arrays.asList(s1.split(","));
+        System.out.println("s2:" + s2.toString());
+        if (CollectionUtils.isEmpty(s2)) {
+            System.out.println("s2为空");
+        }
+        s3 = s2;
+        System.out.println("s3:" + s3);
+        if (CollectionUtils.isEmpty(s3)) {
+            System.out.println("s3为null");
+        }
+        List<Object> objects = Arrays.asList(null, s3);
+        System.out.println("objects:"+objects);
+
+    }
+
+    @org.junit.Test
+    public void testStringNull() {
+        Employee employee = null;
+        if (employee == null) {
+            System.out.println("employee:" + employee);
+        }
+        String s = String.valueOf(employee);
+        System.out.println(s);
+    }
+    /**
+     * https://blog.csdn.net/stalin_/article/details/102610823
+     */
+    @org.junit.Test
+    public void testJson1() {
+        //子json串
+        JSONObject childJsonObj = new JSONObject();
+        childJsonObj.put("name", "NBCB");
+        childJsonObj.put("position", "BJ");
+
+
+        JSONObject jsonObj = new JSONObject();
+        jsonObj.put("name", "stalin");
+        jsonObj.put("old", "26");
+        jsonObj.put("sex", "man");
+        jsonObj.put("work", childJsonObj.toJSONString());
+
+
+        System.out.println(jsonObj.toJSONString());
     }
 
 
+    @org.junit.Test
+    public void testJson2() {
+        //子json串
+        JSONObject childJsonObj = new JSONObject();
+        childJsonObj.put("name", "NBCB");
+        childJsonObj.put("position", "BJ");
 
 
+        JSONObject jsonObj = new JSONObject();
+        jsonObj.put("name", "stalin");
+        jsonObj.put("old", "26");
+        jsonObj.put("sex", "man");
+        jsonObj.put("work", childJsonObj);
 
+        System.out.println(jsonObj.toJSONString());
+    }
+
+
+    @org.junit.Test
+    public void testNullList() {
+        List<Employee> employees = null;
+        List<String> collect = employees.stream().map(Employee::getId).collect(Collectors.toList());
+        System.out.println(collect);
+    }
+
+    @org.junit.Test
+    public void testSingletonList() {
+        String str = "俺是第一个";
+        // 这个时候myList这个列表中就只能存放一个元素
+        //List<String> myList = Collections.singletonList(str);
+        ArrayList<String> myList = Lists.newArrayList(str);
+        myList.add("俺是第二个");
+        System.out.println(myList);
+    }
+
+    @org.junit.Test
+    public void testGsonUtils() {
+        Map<String, String> stringMap = new HashedMap();
+        stringMap.put("1", "测试1");
+        stringMap.put("2", "测试2");
+        stringMap.put("3", "测试3");
+        Gson gson = new Gson();
+        String toJson = gson.toJson(stringMap);
+        System.out.println("toJson：" + toJson);
+
+        String sjson = "{\"name\":\"测试3\",\"id\":\"2\",\"salary\":\"1999.99\"}";
+        Employee employee = GsonUtil.GsonToBean(sjson, Employee.class);
+        System.out.println(employee);
+    }
 }
