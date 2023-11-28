@@ -106,4 +106,30 @@ public class GsonUtil {
         }
         return map;
     }
+
+    /**
+     * jsonString 转对象
+     * @param jsonStr   json
+     * @param type      对象类型
+     * @return
+     * @param <T>       泛型
+     */
+    public static <T> T json2Obj(String jsonStr, Class<T> type) {
+        return gson.fromJson(jsonStr, type);
+    }
+
+    /**
+     * 对象转jsonString
+     *
+     * @param object 对象
+     * @return 字符串
+     */
+    public static String objectToJsonString(Object object) {
+        if (object == null) {
+            return null;
+        }
+        String jsonString;
+        jsonString = gson.toJson(object);
+        return jsonString;
+    }
 }

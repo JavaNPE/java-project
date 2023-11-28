@@ -984,6 +984,7 @@ public class Test {
 
     @org.junit.Test
     public void testGsonUtils() {
+        // 1、map 转 json
         Map<String, String> stringMap = new HashedMap();
         stringMap.put("1", "测试1");
         stringMap.put("2", "测试2");
@@ -991,9 +992,17 @@ public class Test {
         Gson gson = new Gson();
         String toJson = gson.toJson(stringMap);
         System.out.println("toJson：" + toJson);
-
+        // 2、json 转 map
         String sjson = "{\"name\":\"测试3\",\"id\":\"2\",\"salary\":\"1999.99\"}";
+        String str2 = "";
+        Map<String, String> stringObjectMap = GsonUtil.json2Obj(sjson, Map.class);
         Employee employee = GsonUtil.GsonToBean(sjson, Employee.class);
         System.out.println(employee);
+
+        Map<String, String> stringMap1 = null;
+        String s = GsonUtil.objectToJsonString(stringMap1);
+        System.out.println("s:"+ s);
+        Map map = GsonUtil.json2Obj(null, Map.class);
+        System.out.println("map:" + map);
     }
 }
