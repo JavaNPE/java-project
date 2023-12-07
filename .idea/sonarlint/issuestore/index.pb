@@ -39,8 +39,6 @@ SjavaSenior/reflection/src/main/java/com/youliao/strategyPattern/ReflectionTest.
 KjavaSenior/reflection/src/main/java/com/youliao/strategyPattern/Person.java,d\9\d91ecadd4134e538d2d83d32296c06cd8bc15861
 †
 VjavaSenior/commonClass/src/main/java/com/youliao/strategyPattern/StringMethodTest.java,4\9\49b63fb94b2b8b0681d2c3682415821aa8b5526d
-~
-NjavaSenior/zzMyCodeArea/src/main/java/com/youliao/enums/NumberForCaseEnum.java,4\b\4b14fcd8212450fb2da7a94030ded74c0d0719de
 l
 <javaSenior/map/src/main/java/com/youliao/exer1/Employee.java,6\7\67c7fbf48e5413187f334e87456f52203a2780f5
 …
@@ -215,16 +213,10 @@ u
 EjavaSenior/zzMyCodeArea/src/main/java/com/youliao/utils/DateUtil.java,4\e\4e5ccd71f9b5f7c8ddbbf769670805e594eb03a4
 u
 EjavaSenior/zzMyCodeArea/src/main/java/com/youliao/enums/EnumBool.java,2\9\29c1e1027fd1922d3c6723f8131c2137c0b9f91f
-
-QjavaSenior/zzMyCodeArea/src/main/java/com/youliao/enums/EnumProductIdSummery.java,4\b\4b62ea7b58ea69c62a5f073868e2627c51ed6c9f
 A
 interview/pom.xml,4\d\4d3e7bdebeb294863f08b275a11c227961a8cab2
 J
 interview/volatile/pom.xml,d\8\d89a7aec1239ce2c8204284c113c381f9e9973fd
-O
-interview/third_quarter/pom.xml,c\9\c956a68da69a8cdffe4790e78bffe25598891f68
-²
-interview/third_quarter/src/main/java/com/youliao/study/boot_redis/boot_redis01/src/main/java/com/youliao/config/RedisConfig.java,6\c\6cec4f51ea9fdd87e0bd4d95a0427f67a2a5031d
 {
 KjavaSenior/zzMyCodeArea/src/main/java/com/youliao/utils/BigDecimalUtil.java,a\e\aee9d2f7b003c4201ee518d883eb9777d13a298a
 ¹
@@ -243,9 +235,15 @@ t
 Dinterview/volatile/src/main/java/com/youliao/java/SingletonDemo.java,2\d\2d64efa90443a7e8f0dc8fd11d039351127a3b20
 ²
 interview/third_quarter/src/main/java/com/youliao/study/boot_redis/boot_redis02/src/main/java/com/youliao/config/RedisConfig.java,0\a\0adecb39bb9da566fe8fd781be66a811b3920222
-‡
-WjavaSenior/zzMyCodeArea/src/main/java/com/youliao/java/SwitchNumberForCaseEnumTest.java,b\3\b39da9deb615e63f0bd7b119573ec3fdc69306c5
-y
-IjavaSenior/zzMyCodeArea/src/main/java/com/youliao/java/StringExample.java,2\f\2feef930ebdd865699cb2068a53b5961a28f8047
 r
 BjavaSenior/zzMyCodeArea/src/main/java/com/youliao/java/Person.java,b\5\b5bd4a54c0e38b86722f0d37c42a881f8671fe28
+B
+javaSenior/pom.xml,d\2\d21a9f566528e54352c6ea315b634932d644be99
+m
+=javaSenior/zzMyCodeArea/src/main/java/com/youliao/intf/A.java,d\1\d1c8b3315be5c29df74b25357b9a5439a963d072
+7
+pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
+y
+IjavaSenior/zzMyCodeArea/src/main/java/com/youliao/java/StringExample.java,2\f\2feef930ebdd865699cb2068a53b5961a28f8047
+‡
+WjavaSenior/zzMyCodeArea/src/main/java/com/youliao/java/SwitchNumberForCaseEnumTest.java,b\3\b39da9deb615e63f0bd7b119573ec3fdc69306c5

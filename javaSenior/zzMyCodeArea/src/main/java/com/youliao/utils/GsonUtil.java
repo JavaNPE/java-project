@@ -132,4 +132,7 @@ public class GsonUtil {
         jsonString = gson.toJson(object);
         return jsonString;
     }
+    public static String valueOf(Object obj) {
+        return (obj == null) ? "null" : obj.toString();
+    }
 }

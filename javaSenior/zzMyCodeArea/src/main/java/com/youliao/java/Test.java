@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.google.gson.Gson;
 import com.youliao.bean.Employee;
 import com.youliao.bean.Student;
@@ -17,6 +18,7 @@ import com.youliao.utils.GsonUtil;
 import jdk.nashorn.internal.runtime.logging.Logger;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections.MapUtils;
 import org.apache.commons.collections.map.HashedMap;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
@@ -946,7 +948,7 @@ public class Test {
         System.out.println(jsonObj.toJSONString());
     }
 
-
+    public static final String RESERVE_INFO = "reserveInfo";
     @org.junit.Test
     public void testJson2() {
         //子json串
@@ -962,6 +964,34 @@ public class Test {
         jsonObj.put("work", childJsonObj);
 
         System.out.println(jsonObj.toJSONString());
+
+        Map<String,String> map = Maps.newHashMap();
+        //map.put("reserveInfo", childJsonObj);
+        HashMap<String, String> objMap = Maps.newHashMap();
+        //objMap.put(RESERVE_INFO, )
+
+    }
+
+    @org.junit.Test
+    public void testJson3() {
+        //子json串
+        JSONObject childJsonObj = new JSONObject();
+        childJsonObj.put("name", "NBCB");
+        childJsonObj.put("position", "BJ");
+
+
+        JSONObject jsonObj = new JSONObject();
+        jsonObj.put("name", "stalin");
+        jsonObj.put("old", "26");
+        jsonObj.put("sex", "man");
+        jsonObj.put("work", childJsonObj);
+
+        System.out.println(jsonObj.toJSONString());
+
+        String str = String.valueOf(jsonObj.get(""));
+        System.out.println(str);
+        Map map = GsonUtil.json2Obj("", Map.class);
+        System.out.println("map:"+map);
     }
 
 
@@ -974,12 +1004,18 @@ public class Test {
 
     @org.junit.Test
     public void testSingletonList() {
-        String str = "俺是第一个";
-        // 这个时候myList这个列表中就只能存放一个元素
-        //List<String> myList = Collections.singletonList(str);
-        ArrayList<String> myList = Lists.newArrayList(str);
-        myList.add("俺是第二个");
-        System.out.println(myList);
+        HashMap< String,String> map2 = Maps.newHashMap();
+        Objects s = null;
+        String s1 = String.valueOf(s);
+        System.out.println(s1);
+        HashMap< String,String> map = Maps.newHashMap();
+        String s2 = map.get(null);
+        Map map1 = GsonUtil.json2Obj(s2, Map.class);
+        System.out.println("map1:"+map1);
+        map2.putAll(MapUtils.isNotEmpty(map1) ?map1:Maps.newHashMap());
+        System.out.println("map2:"+map2);
+        String s3 = GsonUtil.valueOf(null);
+        System.out.println(s3);
     }
 
     @org.junit.Test
@@ -1004,5 +1040,24 @@ public class Test {
         System.out.println("s:"+ s);
         Map map = GsonUtil.json2Obj(null, Map.class);
         System.out.println("map:" + map);
+    }
+
+    @org.junit.Test
+    public void testGsonUtilNull() {
+        Map<String,String> stringMap = Maps.newHashMap();
+        Map map = GsonUtil.json2Obj("", Map.class);
+        //map.size();
+        System.out.println(map);
+        stringMap.putAll(MapUtils.isNotEmpty(map) ? map : Maps.newHashMap());
+        //stringMap.putAll(map);
+        System.out.println("stringMpa:" + stringMap);
+        Object str1 = stringMap.get("StringMap");
+        String str2 = String.valueOf(str1);
+        System.out.println("str2:" + str2);
+        Map map2 = GsonUtil.json2Obj(str2, Map.class);
+        System.out.println("map2:" + map2);
+        stringMap.put(null, "value1");
+        stringMap.put(null, "value2");
+        System.out.println(stringMap);
     }
 }
