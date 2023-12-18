@@ -235,8 +235,6 @@ t
 Dinterview/volatile/src/main/java/com/youliao/java/SingletonDemo.java,2\d\2d64efa90443a7e8f0dc8fd11d039351127a3b20
 ≤
 Åinterview/third_quarter/src/main/java/com/youliao/study/boot_redis/boot_redis02/src/main/java/com/youliao/config/RedisConfig.java,0\a\0adecb39bb9da566fe8fd781be66a811b3920222
-r
-BjavaSenior/zzMyCodeArea/src/main/java/com/youliao/java/Person.java,b\5\b5bd4a54c0e38b86722f0d37c42a881f8671fe28
 B
 javaSenior/pom.xml,d\2\d21a9f566528e54352c6ea315b634932d644be99
 m
@@ -247,3 +245,9 @@ y
 IjavaSenior/zzMyCodeArea/src/main/java/com/youliao/java/StringExample.java,2\f\2feef930ebdd865699cb2068a53b5961a28f8047
 á
 WjavaSenior/zzMyCodeArea/src/main/java/com/youliao/java/SwitchNumberForCaseEnumTest.java,b\3\b39da9deb615e63f0bd7b119573ec3fdc69306c5
+~
+NjavaSenior/zzMyCodeArea/src/main/java/com/youliao/enums/NumberForCaseEnum.java,4\b\4b14fcd8212450fb2da7a94030ded74c0d0719de
+u
+EjavaSenior/zzMyCodeArea/src/main/java/com/youliao/utils/GsonUtil.java,0\6\065e057f1e27651159b96a2caa6b526652d87230
+Å
+QjavaSenior/zzMyCodeArea/src/main/java/com/youliao/enums/EnumProductIdSummery.java,4\b\4b62ea7b58ea69c62a5f073868e2627c51ed6c9f

@@ -1060,4 +1060,45 @@ public class Test {
         stringMap.put(null, "value2");
         System.out.println(stringMap);
     }
+
+    @org.junit.Test
+    public void testNull() {
+        Employee e = null;
+        String str = "初始化";
+        if (e == null || StringUtils.isBlank(e.getName())) {
+            System.out.println("-------------");
+        }
+        BigDecimal b = new BigDecimal(String.valueOf(0));
+        System.out.println("BigDecimal b:" + b);
+        Employee employee = new Employee();
+        employee.setId("1111");
+        employee.setName("测试");
+        str = employee.getName();
+        System.out.println("str:" + str);
+       BigDecimal b1 = new BigDecimal("null");
+        System.out.println(b1);
+    }
+
+    @org.junit.Test
+    public void testSubstring() {
+       // String str = "411403199912308730";
+        String str = "12345";
+
+        String subStr = str.substring(str.length()-4, str.length());
+        System.out.println(subStr);
+    }
+
+    @org.junit.Test
+    public void testMapNull2() {
+        //Map map = null;
+        Map map = Maps.newHashMap();
+        if(MapUtils.isEmpty(map)) {
+            System.out.println("===============");
+        }
+
+        // 若map 为 null  此处会抛空指针
+        if (map.isEmpty()) {
+            System.out.println("-------------");
+        }
+    }
 }
