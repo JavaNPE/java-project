@@ -986,7 +986,15 @@ public class Test {
         jsonObj.put("sex", "man");
         jsonObj.put("work", childJsonObj);
 
-        System.out.println(jsonObj.toJSONString());
+        JSONObject jsonObj2 = new JSONObject();
+        jsonObj2.put("name", "stalin");
+        jsonObj2.put("old", "26");
+        jsonObj2.put("sex", "man");
+        jsonObj2.put("work", childJsonObj.toJSONString());
+
+        System.out.println("jsonObj:" + jsonObj.toJSONString());
+        System.out.println("jsonObj2:" + jsonObj2.toJSONString());
+
 
         String str = String.valueOf(jsonObj.get(""));
         System.out.println(str);
@@ -1091,14 +1099,68 @@ public class Test {
     @org.junit.Test
     public void testMapNull2() {
         //Map map = null;
-        Map map = Maps.newHashMap();
+        Map<String,String> map = Maps.newHashMap();
+        map.get("key");
         if(MapUtils.isEmpty(map)) {
             System.out.println("===============");
+            BigDecimal b = new BigDecimal(StringUtils.isNotBlank(map.get("key"))?map.get("key"):String.valueOf(0));
+            System.out.println(b);
         }
 
         // 若map 为 null  此处会抛空指针
         if (map.isEmpty()) {
             System.out.println("-------------");
+        }
+
+        BigDecimal b2 = new BigDecimal(String.valueOf(100));
+        System.out.println(b2);
+
+        String str1 = null;
+        if (StringUtils.isBlank(str1)) {
+            String s = StringUtils.isBlank(map.get("888")) ? null : map.get("888");
+            if (StringUtils.isBlank(s)) {
+                System.out.println("s:"+s);
+            }
+            System.out.println("字符串为空");
+        }
+        String.valueOf(null);
+    }
+    @org.junit.Test
+    public void test13312() {
+        Employee employee = null;
+        if (employee == null || StringUtils.isBlank(employee.getName())) {
+            System.out.println(employee);
+        }
+    }
+
+    @org.junit.Test
+    public void testAllMatch() {
+        /*String[] days = new String[4];
+        days[0] = "28";
+        days[1] = "29";
+        days[2] = "30";
+        days[3] = "31";
+
+        String day = "31";
+        System.out.println(Arrays.stream(days).toArray());
+        Boolean exists = Arrays.stream(days).anyMatch(ele -> ele.equals(day));
+        if (exists) {
+            System.out.println(EnumBool.YES);
+        } else {
+            System.out.println(EnumBool.NO);
+        }
+        System.out.println("----------------------------");*/
+        String str1 = "28,29,30,31";
+        String day = "28";
+        String[] strDays = StringUtils.split(str1, ",");
+        System.out.println(strDays);
+
+        Boolean exists1 = Arrays.stream(strDays).anyMatch(ele -> ele.equals(day));
+        if (exists1) {
+            System.out.println("---------------");
+            System.out.println(EnumBool.YES);
+        } else {
+            System.out.println(EnumBool.NO);
         }
     }
 }
