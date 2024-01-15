@@ -14,6 +14,7 @@ import com.youliao.enums.EnumBool;
 import com.youliao.enums.EnumProductIdSummery;
 import com.youliao.enums.NumberForCaseEnum;
 import com.youliao.utils.BigDecimalUtil;
+import com.youliao.utils.DateUtil;
 import com.youliao.utils.GsonUtil;
 import jdk.nashorn.internal.runtime.logging.Logger;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +27,8 @@ import org.junit.Assert;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -1161,6 +1164,69 @@ public class Test {
             System.out.println(EnumBool.YES);
         } else {
             System.out.println(EnumBool.NO);
+        }
+    }
+
+
+    @org.junit.Test
+    public void testIdCard() {
+        // 获取当前日期
+        Calendar calendar = Calendar.getInstance();
+        int currentYear = calendar.get(Calendar.YEAR);
+        // 提取身份证号中的出生日期
+        String idNumber = "11010119800101234X";
+        String birthDateStr = idNumber.substring(6, 14);
+        System.out.println("生日："+birthDateStr);
+        // 将出生日期字符串转换为Date类型
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+        Date birthDate = null;
+        try {
+            birthDate = dateFormat.parse(birthDateStr);
+            System.out.println("五十年后年月日："+ DateUtil.offsetYear(birthDate, 50));
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        // 计算年龄
+        calendar.setTime(birthDate);
+        int birthYear = calendar.get(Calendar.YEAR);
+        int age = currentYear - birthYear;
+        // 打印年龄
+        System.out.println("Age: " + age);
+
+        System.out.println("50年后日期：" + DateUtil.dateAddYear(new Date(), 50));
+
+        Date now = new Date();
+/*        if(DateUtil.dateAddYear(new Date(), 50).compareTo(now) > 0) {
+            System.out.println("-------------");
+        }*/
+        if (now.before(DateUtil.dateAddYear(new Date(), 50))) {
+            System.out.println("------------------");
+            System.out.println("now:" + now);
+            System.out.println("50年后:" + DateUtil.dateAddYear(new Date(), 50));
+        }
+    }
+
+    @org.junit.Test
+    public void testIdCard2() {
+        Date effectiveDate = new Date();
+        System.out.println("当前生效时间:" + effectiveDate);
+        Date oneYearLater = DateUtil.addDate(effectiveDate, 365);
+        System.out.println("导入时间+365天之后的日期:" + oneYearLater);
+
+        // 提取身份证号中的出生日期
+        String idNumber = "11010119800229234X";
+        String birthByIdCard = idNumber.substring(6, 14);
+        Date birthByIdCardDate = DateUtil.getDate(birthByIdCard, DateUtil.DATE_FORMAT_2);
+        // 根据身份证计算50岁生日日期
+        Date fiftyYearsOld = DateUtil.offsetYear(birthByIdCardDate, 50);
+        /*if (effectiveDateAfter.compareTo(offsetYear) <=0) {
+            System.out.println("导入时间+365天之后的日期:" + effectiveDateAfter);
+            System.out.println("50岁生日日期：" + offsetYear);
+        }*/
+        if (oneYearLater.before(fiftyYearsOld)) {
+            System.out.println("-------------------");
+            System.out.println("导入时间+365天之后的日期:" + oneYearLater);
+            System.out.println("50岁生日日期：" + fiftyYearsOld);
         }
     }
 }
