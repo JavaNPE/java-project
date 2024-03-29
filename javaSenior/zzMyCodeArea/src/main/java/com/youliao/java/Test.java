@@ -559,8 +559,7 @@ public class Test {
     public void testTest() {
         String str = null;
 
-        System.out.println(String.valueOf(str));
-        // System.out.println(str.toString()); java.lang.NullPointerException
+        System.out.println(EnumProductIdSummery.find("05"));
 
     }
 
@@ -1217,8 +1216,9 @@ public class Test {
         String idNumber = "11010119800229234X";
         String birthByIdCard = idNumber.substring(6, 14);
         Date birthByIdCardDate = DateUtil.getDate(birthByIdCard, DateUtil.DATE_FORMAT_2);
+        Date birthByIdCardDateEnd = DateUtil.getEndTimeOfDay(birthByIdCardDate);
         // 根据身份证计算50岁生日日期
-        Date fiftyYearsOld = DateUtil.offsetYear(birthByIdCardDate, 50);
+        Date fiftyYearsOld = DateUtil.offsetYear(birthByIdCardDateEnd, 50);
         /*if (effectiveDateAfter.compareTo(offsetYear) <=0) {
             System.out.println("导入时间+365天之后的日期:" + effectiveDateAfter);
             System.out.println("50岁生日日期：" + offsetYear);
@@ -1228,5 +1228,174 @@ public class Test {
             System.out.println("导入时间+365天之后的日期:" + oneYearLater);
             System.out.println("50岁生日日期：" + fiftyYearsOld);
         }
+        String rate = "18";
+        //String dateStr = "";
+        String dateStr = "2023-12-21 19:36:21";
+
+        if (DateUtil.isDateTime(dateStr, DateUtil.DATE_FORMAT_1)) {
+            System.out.println("是日期格式");
+        }
+        if (!checkNull(rate, dateStr)) {
+            System.out.println("checkNull方法返回值："+checkNull(rate,dateStr));
+        }
+
     }
+
+    private boolean checkNull(String rate, String dateStr) {
+        return !StringUtils.isNotBlank(rate) && StringUtils.isNotBlank(dateStr) && DateUtil.isDateTime(dateStr,
+                DateUtil.DATE_FORMAT_1);
+    }
+
+    @org.junit.Test
+    public void testMaps() {
+        Map<EnumProductIdSummery, Object> map = Maps.newHashMap();
+        map.put(EnumProductIdSummery.NBCBZJD001, "10001");
+        map.put(EnumProductIdSummery.NBCBZJD002, "10002");
+        map.put(EnumProductIdSummery.NBCBZJD003, "10003");
+        map.put(EnumProductIdSummery.NBCBZJD003, "1000333");
+        System.out.println(map);
+        String str1 = "";
+        String str2 = "";
+        Boolean b1 = StringUtils.isNotBlank(str1);
+        Boolean b2 = StringUtils.isNotBlank(str2);
+
+        Object obj = map.get(null);
+        String str3 = (String) obj;
+        if (EnumProductIdSummery.NBCBZJD003 == EnumProductIdSummery.find(str3)) {
+            System.out.println("------------");
+        }
+        System.out.println(str3);
+    }
+
+    @org.junit.Test
+    public void testList2() {
+        List list = Lists.newArrayList();
+        Boolean b = Boolean.FALSE;
+        System.out.println(list);
+        System.out.println(list.size());
+        list.add(0);
+        if (CollectionUtils.isNotEmpty(list)) {
+            list.get(0);
+        }
+        if (CollectionUtils.isEmpty(list)) {
+            // return;
+        }
+        System.out.println("---------------");
+        if (list.contains(null)) {
+            System.out.println("=======");
+        }
+        b = list.contains(0);
+        System.out.println("b:" + b);
+
+        System.out.println("9090:"+EnumProductIdSummery.find("NBCBZJD001"));
+        System.out.println("001:"+list.contains(null));
+        System.out.println("002:"+list.contains("  "));
+    }
+
+
+    @org.junit.Test
+    public void testBreak() {
+        EnumProductIdSummery productIdSummery =  EnumProductIdSummery.find("");
+        productIdSummery.toString();
+        System.out.println(productIdSummery);
+    }
+
+    @org.junit.Test
+    public void testContains() {
+        Employee e = new Employee();
+        Person p = new Person();
+        e.setPerson(p);
+        p.setName("张三");
+        p.setAge(18);
+        System.out.println(e);
+
+        List<String> s = Lists.newArrayList();
+        //s.add("1"); // 初始化
+        s.add("2"); // 审批中
+        s.add("3"); // 授信失效
+        s.add("3"); // 授信失效
+        s.add("4"); // 通过
+
+        List s2 = Lists.newArrayList();
+        s2.add("3");
+        s2.add("4");
+        System.out.println("size:" +s.size());
+        System.out.println("get(0):"+s.get(0));
+        System.out.println("s集合："+ s);
+        List<String> status = s.stream().filter(input -> !input.equals("4"))
+                .collect(Collectors.toList());
+
+        System.out.println("status: "+ status);
+        if (s2.containsAll(s)) {
+            System.out.println("通过");
+        } else {
+            System.out.println("拒绝");
+        }
+    }
+
+    @org.junit.Test
+    public void testStream(){
+        List<Person> list = Lists.newArrayList();
+        List<Integer> lis2 = Lists.newArrayList();
+
+        List<Integer> agelist = list.stream().map(Person::getAge).collect(Collectors.toList());
+        if (CollectionUtils.isNotEmpty(agelist)) {
+            lis2.addAll(agelist);
+        } else{
+            lis2.addAll(agelist);
+        }
+        System.out.println(list);
+    }
+
+    @org.junit.Test
+    public void testCalendar(){
+        Calendar cld = Calendar.getInstance();
+        cld.setTime(new Date());
+        Integer eff = cld.get(Calendar.DAY_OF_MONTH);
+        System.out.println(eff);
+    }
+
+    @org.junit.Test
+    public void testIf() {
+        // 存量的客户id
+        List<Integer> list = Lists.newArrayList();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+
+        System.out.println("存量 id"+list);
+
+        // 客户所有数据
+        Person p = new Person();
+        p.setAge(1);
+        p.setName("张1");
+
+        Person p2 = new Person();
+        p2.setAge(2);
+        p2.setName("张2");
+
+        Person p3 = new Person();
+        p3.setAge(3);
+        p3.setName("张3");
+
+        Person p4 = new Person();
+        p4.setAge(4);
+        p4.setName("张4");
+
+        // 查出来该客户所有信息
+        List<Person> personList = Lists.newArrayList();
+        personList.add(p);
+        personList.add(p2);
+        personList.add(p3);
+        personList.add(p4);
+        System.out.println("客户所有数据personList：" + personList);
+
+        List<Person> personsNew =
+                personList.stream().filter(input -> !list.contains(input.getAge())).collect(Collectors.toList());
+        System.out.println("仅处理新的数据personsNew：" + personsNew);
+
+
+
+    }
+
 }

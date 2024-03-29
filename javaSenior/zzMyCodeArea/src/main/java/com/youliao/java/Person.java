@@ -1,5 +1,7 @@
 package com.youliao.java;
 
+import lombok.Data;
+
 /**
  * **1、调用方式**
  * <p>
@@ -15,7 +17,7 @@ package com.youliao.java;
  * @Date 2023/9/20 15:31
  * @Description:
  */
-
+@Data
 public class Person {
     private String name;
     private Integer age;

@@ -14,7 +14,10 @@ import java.util.Date;
  */
 public final class DateUtil {
 
+    public static final String DATE_FORMAT_1 = "yyyy-MM-dd HH:mm:ss";
     public static final String DATE_FORMAT_2 = "yyyyMMdd";
+    public static final String DATE_FORMAT_5 = "yyyy-MM-dd HH:mm:ss.SSS";
+
 
 
     /**
@@ -188,7 +191,7 @@ public final class DateUtil {
      * @param pattern 格式
      * @return true 是日期格式，false 不是日期格式
      */
-    private static boolean isDateTime(String str, String pattern) {
+    public static boolean isDateTime(String str, String pattern) {
         if (StringUtils.isEmpty(str)) {
             return false;
         }
@@ -205,4 +208,12 @@ public final class DateUtil {
         return convertSuccess;
     }
 
+    /**
+     * 判断字符串是否日期时间格式
+     * @param str 时间字符串
+     * @return true 是日期格式，false 不是日期格式
+     */
+    public static boolean isDateTime(String str) {
+        return isDateTime(str, DATE_FORMAT_5);
+    }
 }

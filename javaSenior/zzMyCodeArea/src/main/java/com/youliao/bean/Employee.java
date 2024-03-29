@@ -1,5 +1,6 @@
 package com.youliao.bean;
 
+import com.youliao.java.Person;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,6 +23,7 @@ public class Employee implements Comparable<Employee> {
     private BigDecimal repayLateFee = BigDecimal.ZERO;
     // 成员变量
     private int num;
+    private Person person;
 
 
     @Override
