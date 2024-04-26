@@ -1345,6 +1345,7 @@ public class Test {
             lis2.addAll(agelist);
         }
         System.out.println(list);
+
     }
 
     @org.junit.Test
@@ -1353,6 +1354,23 @@ public class Test {
         cld.setTime(new Date());
         Integer eff = cld.get(Calendar.DAY_OF_MONTH);
         System.out.println(eff);
+    }
+
+
+    @org.junit.Test
+    public void testListDemo() {
+        List<Person> p = null;
+        for (Person person : p) {
+            System.out.println("---------");
+        }
+
+        Person p2 = null;
+        Person p3 = new Person();
+        p3.setName("测试3");
+        p.add(p2);
+        p.add(p3);
+
+        System.out.println(p);
     }
 
     @org.junit.Test
@@ -1394,8 +1412,134 @@ public class Test {
                 personList.stream().filter(input -> !list.contains(input.getAge())).collect(Collectors.toList());
         System.out.println("仅处理新的数据personsNew：" + personsNew);
 
+    }
+
+    @org.junit.Test
+    public void testFk() {
+
+        // 创建一个数组
+        ArrayList<String> sites = new ArrayList<>();
+
+        sites.add("Google");
+        sites.add("Runoob");
+        sites.add("Taobao");
+        System.out.println("网站列表: " + sites);
+
+
+        // 查找位置索引值为 Runoob 的元素
+        int position1 = sites.indexOf("Taobao");
+        System.out.println("Runoob 的索引位置: " + position1);
+
+        // 查找位置索引值为 Weibo 的元素
+        int position2 = sites.indexOf("Weibo");
+        System.out.println("Weibo 的索引位置: " + position2);
+    }
+
+
+
+    /**记录：一个List按照另一个List进行排序
+     * https://blog.csdn.net/weixin_41988248/article/details/107785890
+     * 一个List按照另一个List的数据顺序来排序
+     * https://blog.csdn.net/haoshuai2015/article/details/93746529?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0-93746529-blog-107785890.235^v43^control&spm=1001.2101.3001.4242.1&utm_relevant_index=3
+     */
+    @org.junit.Test
+    public void testShunxu() {
+        //这里的顺序，是我自己定义的一个List<String>
+        /*String[] regulation = {"诸葛亮","鲁班","貂蝉","吕布"};
+        final List<String> regulationOrder = Arrays.asList(regulation);
+        String[] ordered = {"貂蝉","诸葛亮","吕布","貂蝉","鲁班","诸葛亮","貂蝉","鲁班","诸葛亮"};
+        List<String> orderedList = Arrays.asList(ordered);
+        Collections.sort(orderedList, new Comparator<String>()
+        {
+            public int compare(String o1, String o2)
+            {
+                int io1 = regulationOrder.indexOf(o1);
+                int io2 = regulationOrder.indexOf(o2);
+                return io1 - io2;
+            }
+        });
+        System.out.println(orderedList);*/
+
+        List<String> thirdCreditSerialList = Arrays.asList("8001","8002","8003");
+        System.out.println("排序规则：" + thirdCreditSerialList);
+        List<CreditApplyDo> creditApplyDos = Lists.newArrayList();
+
+
+        CreditApplyDo creditApplyDo2 = CreditApplyDo.builder().build();
+        creditApplyDo2.setCreditApplyId("2002");
+        creditApplyDo2.setThirdpartApplyId("8002");
+        creditApplyDo2.setProductId("CF000004");
+        creditApplyDo2.setUserName("李2");
+
+        CreditApplyDo creditApplyDo = CreditApplyDo.builder().build();
+        creditApplyDo.setCreditApplyId("2001");
+        creditApplyDo.setThirdpartApplyId("8001");
+        creditApplyDo.setProductId("CF000004");
+        creditApplyDo.setUserName("李1");
+
+        CreditApplyDo creditApplyDo3 = CreditApplyDo.builder().build();
+        creditApplyDo3.setCreditApplyId("2003");
+        creditApplyDo3.setThirdpartApplyId("8003");
+        creditApplyDo3.setProductId("CF000004");
+        creditApplyDo3.setUserName("李3");
+
+        CreditApplyDo creditApplyDo4 = CreditApplyDo.builder().build();
+        creditApplyDo4.setCreditApplyId("2004");
+        creditApplyDo4.setThirdpartApplyId("8004");
+        creditApplyDo4.setProductId("CF000004");
+        creditApplyDo4.setUserName("李4");
+
+        creditApplyDos.add(creditApplyDo3);
+        creditApplyDos.add(creditApplyDo2);
+        creditApplyDos.add(creditApplyDo4);
+        creditApplyDos.add(creditApplyDo);
+
+
+        System.out.println("排列前的数据："); // 3\2\4\1
+        System.out.println(creditApplyDos);
+        List<String> creditApplyId1 =
+                creditApplyDos.stream().map(CreditApplyDo::getCreditApplyId).collect(Collectors.toList());
+        System.out.println(creditApplyId1);
+        System.out.println();
+
+        setListOrder(thirdCreditSerialList, creditApplyDos);
+
+        System.out.println("排列后的数据：");
+        System.out.println(creditApplyDos);
+
+        List<String> creditApplyId2 =
+                creditApplyDos.stream().map(CreditApplyDo::getCreditApplyId).collect(Collectors.toList());
+        System.out.println(creditApplyId2);
+
 
 
     }
+    public static void setListOrder(List<String> orderRegulation, List<CreditApplyDo> targetList) {
+        //按照Posts的Id来排序
+        Collections.sort(targetList, ((o1, o2) -> {
+            int io1 = orderRegulation.indexOf(o1.getThirdpartApplyId());
+            int io2 = orderRegulation.indexOf(o2.getThirdpartApplyId());
 
+            if (io1 != -1) {
+                io1 = targetList.size() - io1;
+            }
+            if (io2 != -1) {
+                io2 = targetList.size() - io2;
+            }
+
+            return io2 - io1;
+        }));
+    }
+
+    @org.junit.Test
+    public void testIfElse() {
+        String str = "2";
+        if ("1".equals(str)) {
+            System.out.println("11");
+        } else if ("2".equals(str)) {
+            System.out.println("22222");
+        } else {
+            System.out.println("333");
+        }
+    }
 }
