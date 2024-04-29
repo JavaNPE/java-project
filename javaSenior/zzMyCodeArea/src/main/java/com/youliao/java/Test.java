@@ -1516,7 +1516,7 @@ public class Test {
     }
 
     /**
-     * 这里说一下重写的 public int compareTo(Student o){} 这个方法，它返回三种 int 类型的值： 负整数，零 ，正整数。
+     * 这里说一下重写的 public int compareTo(){} 这个方法，它返回三种 int 类型的值： 负整数，零 ，正整数。
      * <p>
      * 返回值	含义
      * 负整数	当前对象的值 < 比较对象的值 ， 位置排在前
@@ -1538,7 +1538,7 @@ public class Test {
             if (io2 != -1) {
                 io2 = targetList.size() - io2;
             }
-
+            // compareTo(Student o){} 这个方法，它返回三种 int 类型的值： 负整数，零 ，正整数
             return io2 - io1;
         }));
     }
