@@ -3,7 +3,8 @@ package com.youliao.team.junit;
 import com.youliao.team.domain.Employee;
 import com.youliao.team.service.NameListService;
 import com.youliao.team.service.TeamException;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
 
 /**
  * 对NameListService类的测试

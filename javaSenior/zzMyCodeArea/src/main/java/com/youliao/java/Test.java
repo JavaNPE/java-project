@@ -1514,6 +1514,18 @@ public class Test {
 
 
     }
+
+    /**
+     * 这里说一下重写的 public int compareTo(Student o){} 这个方法，它返回三种 int 类型的值： 负整数，零 ，正整数。
+     * <p>
+     * 返回值	含义
+     * 负整数	当前对象的值 < 比较对象的值 ， 位置排在前
+     * 零	当前对象的值 = 比较对象的值 ， 位置不变
+     * 正整数	当前对象的值 > 比较对象的值 ， 位置排在后
+     *
+     * @param orderRegulation
+     * @param targetList
+     */
     public static void setListOrder(List<String> orderRegulation, List<CreditApplyDo> targetList) {
         //按照Posts的Id来排序
         Collections.sort(targetList, ((o1, o2) -> {
@@ -1541,5 +1553,18 @@ public class Test {
         } else {
             System.out.println("333");
         }
+    }
+
+    @org.junit.Test
+    public void testIndexOf() {
+        String s = "findStrring";  //定义初始化一个字符串findString
+        // 从头开始查找是否存在指定的字符         //结果如下
+        System.out.println(s.indexOf("d"));     // 结果是3
+        // 从第四个字符位置开始往后继续查找S，包含当前位置
+        System.out.println(s.indexOf("S", 3));  //结果是4
+        //若指定字符串中没有该字符则系统返回-1
+        System.out.println(s.indexOf("o"));     //结果是-1
+        //从指定的索引处开始向后搜索，返回在此字符串中最后一次出现的指定子字符串的索引
+        System.out.println(s.lastIndexOf("r")); //结果是7
     }
 }
