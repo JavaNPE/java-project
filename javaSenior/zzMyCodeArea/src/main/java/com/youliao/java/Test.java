@@ -332,12 +332,12 @@ public class Test {
      */
     @org.junit.Test
     public void testEnum() {
-        /*NumberForCaseEnum nbcbzjd003 = NumberForCaseEnum.find("NBCBZJD003");
-        System.out.println(nbcbzjd003.getCode());
-        NumberForCaseEnum nbcbzjd002 = NumberForCaseEnum.getByCode("NBCBZJD002");
-        System.out.println(nbcbzjd002.getCode());
-        NumberForCaseEnum nbcbzjd002Desc = NumberForCaseEnum.getByCode("NBCBZJD002");
-        System.out.println(nbcbzjd002Desc.getDescription());*/
+        /*NumberForCaseEnum CRCS003 = NumberForCaseEnum.find("CRCS003");
+        System.out.println(CRCS003.getCode());
+        NumberForCaseEnum CRCS002 = NumberForCaseEnum.getByCode("CRCS002");
+        System.out.println(CRCS002.getCode());
+        NumberForCaseEnum CRCS002Desc = NumberForCaseEnum.getByCode("CRCS002");
+        System.out.println(CRCS002Desc.getDescription());*/
         NumberForCaseEnum name = NumberForCaseEnum.findByName("直接贷B");
         System.out.println(name);
         NumberForCaseEnum desc = NumberForCaseEnum.findByDesc("直接贷B");
@@ -549,7 +549,7 @@ public class Test {
         String tendId = "000";
         String flag = String.valueOf("1");
         String dateStr = String.valueOf("20230517");
-        String productId = "NBCBZJDBZX001";
+        String productId = "CRCSZJDBZX001";
         String serialNo = String.format("%s%s%s%s", tendId, flag, dateStr, productId);
         System.out.println(serialNo);
         System.out.println(tendId + flag + dateStr + productId);
@@ -629,9 +629,9 @@ public class Test {
 
     @org.junit.Test
     public void testMap() {
-        String s = EnumProductIdSummery.NBCBZJD001.getCode();
-        if (s.equals(EnumProductIdSummery.NBCBZJD001.getCode())) {
-            s = EnumProductIdSummery.NBCBZJD003.getCode();
+        String s = EnumProductIdSummery.CRCS001.getCode();
+        if (s.equals(EnumProductIdSummery.CRCS001.getCode())) {
+            s = EnumProductIdSummery.CRCS003.getCode();
         }
         System.out.println(s);
     }
@@ -752,16 +752,16 @@ public class Test {
     @org.junit.Test
     public void test1() {
         String str = null;
-        EnumProductIdSummery summery = EnumProductIdSummery.find("NBCBZJD004");
+        EnumProductIdSummery summery = EnumProductIdSummery.find("CRCS004");
         switch (summery) {
-            case NBCBZJD001:
+            case CRCS001:
                 str = summery.getCode();
                 break;
-            case NBCBZJD002:
+            case CRCS002:
                 str = summery.getCode();
                 break;
             default:
-                str = EnumProductIdSummery.NBCBZJD003.getCode();
+                str = EnumProductIdSummery.CRCS003.getCode();
                 break;
         }
         System.out.println(str);
@@ -790,8 +790,8 @@ public class Test {
 
     @org.junit.Test
     public void testEnum2() {
-        EnumProductIdSummery nbcbzjd003 = EnumProductIdSummery.valueOf("NBCBZJD003");
-        if (EnumProductIdSummery.NBCBZJD003.equals(nbcbzjd003)) {
+        EnumProductIdSummery CRCS003 = EnumProductIdSummery.valueOf("CRCS003");
+        if (EnumProductIdSummery.CRCS003.equals(CRCS003)) {
             System.out.println("---------------");
         }
     }
@@ -936,7 +936,7 @@ public class Test {
     public void testJson1() {
         //子json串
         JSONObject childJsonObj = new JSONObject();
-        childJsonObj.put("name", "NBCB");
+        childJsonObj.put("name", "CRCS");
         childJsonObj.put("position", "BJ");
 
 
@@ -955,7 +955,7 @@ public class Test {
     public void testJson2() {
         //子json串
         JSONObject childJsonObj = new JSONObject();
-        childJsonObj.put("name", "NBCB");
+        childJsonObj.put("name", "CRCS");
         childJsonObj.put("position", "BJ");
 
 
@@ -978,7 +978,7 @@ public class Test {
     public void testJson3() {
         //子json串
         JSONObject childJsonObj = new JSONObject();
-        childJsonObj.put("name", "NBCB");
+        childJsonObj.put("name", "CRCS");
         childJsonObj.put("position", "BJ");
 
 
@@ -1249,10 +1249,10 @@ public class Test {
     @org.junit.Test
     public void testMaps() {
         Map<EnumProductIdSummery, Object> map = Maps.newHashMap();
-        map.put(EnumProductIdSummery.NBCBZJD001, "10001");
-        map.put(EnumProductIdSummery.NBCBZJD002, "10002");
-        map.put(EnumProductIdSummery.NBCBZJD003, "10003");
-        map.put(EnumProductIdSummery.NBCBZJD003, "1000333");
+        map.put(EnumProductIdSummery.CRCS001, "10001");
+        map.put(EnumProductIdSummery.CRCS002, "10002");
+        map.put(EnumProductIdSummery.CRCS003, "10003");
+        map.put(EnumProductIdSummery.CRCS003, "1000333");
         System.out.println(map);
         String str1 = "";
         String str2 = "";
@@ -1261,7 +1261,7 @@ public class Test {
 
         Object obj = map.get(null);
         String str3 = (String) obj;
-        if (EnumProductIdSummery.NBCBZJD003 == EnumProductIdSummery.find(str3)) {
+        if (EnumProductIdSummery.CRCS003 == EnumProductIdSummery.find(str3)) {
             System.out.println("------------");
         }
         System.out.println(str3);
@@ -1287,7 +1287,7 @@ public class Test {
         b = list.contains(0);
         System.out.println("b:" + b);
 
-        System.out.println("9090:"+EnumProductIdSummery.find("NBCBZJD001"));
+        System.out.println("9090:"+EnumProductIdSummery.find("CRCS001"));
         System.out.println("001:"+list.contains(null));
         System.out.println("002:"+list.contains("  "));
     }
@@ -1566,5 +1566,35 @@ public class Test {
         System.out.println(s.indexOf("o"));     //结果是-1
         //从指定的索引处开始向后搜索，返回在此字符串中最后一次出现的指定子字符串的索引
         System.out.println(s.lastIndexOf("r")); //结果是7
+    }
+
+    @org.junit.Test
+    public void testList22() {
+        Person p = new Person();
+        p.setName("张1");
+        p.setProduct(EnumProductIdSummery.CRCS001.getCode());
+        p.setUsingAmount(new BigDecimal(0));
+
+        Person p2 = new Person();
+        p2.setName("张2");
+        p2.setProduct(EnumProductIdSummery.CRCS002.getCode());
+        p2.setTotalAmount(new BigDecimal(10000));
+        List<Person> personList = Lists.newArrayList();
+
+        personList.add(p);
+        personList.add(p2);
+
+        BigDecimal totalAmount = BigDecimal.ZERO;
+        for (Person person : personList) {
+            EnumProductIdSummery product = EnumProductIdSummery.find(person.getProduct());
+            if (EnumProductIdSummery.CRCS001 == product) {
+                totalAmount = totalAmount.add(person.getUsingAmount());
+            } else {
+                totalAmount = totalAmount.add(person.getTotalAmount());
+            }
+        }
+        BigDecimal noSy = totalAmount;
+        System.out.println(noSy);
+
     }
 }

@@ -19,9 +19,9 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public enum NumberForCaseEnum {
 
-    ONE("NBCBZJD001", "直接贷"),
-    TWO("NBCBZJD002", "直接贷（保险）"),
-    THREE("NBCBZJD003", "直接贷B"),
+    ONE("CRCS001", "直接贷款产品"),
+    TWO("CRCS002", "直接贷款(保险类别)"),
+    THREE("CRCS003", "直接贷款B型产品"),
     ;
 
     private String code;

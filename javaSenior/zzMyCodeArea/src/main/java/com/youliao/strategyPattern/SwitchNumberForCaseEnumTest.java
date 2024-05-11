@@ -21,7 +21,7 @@ public class SwitchNumberForCaseEnumTest {
 		}
 		// 也可以单独拿值
 		//System.out.println("调皮捣蛋的："+ONE.getIndex());
-		String productId = "NBCBZJD003";
+		String productId = "CRCS003";
 		switch (NumberForCaseEnum.getByCode(productId)) {
 			case ONE:
 				System.out.println("1111");

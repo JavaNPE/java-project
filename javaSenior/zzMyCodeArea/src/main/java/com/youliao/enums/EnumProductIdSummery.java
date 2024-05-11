@@ -16,15 +16,15 @@ import java.util.stream.Collectors;
 @Getter
 @AllArgsConstructor
 public enum EnumProductIdSummery {
-    NBCBZJD001("NBCBZJD001", "直接贷助贷", "01"),
-    NBCBZJD00000000("NBCBZJD001111", "直接贷助贷", "01"),
+    CRCS001("CRCS001", "助贷产品", "01"),
+    CRCS00000000("CRCS001111", "助贷产品", "01"),
 
 
-    NBCBZJD002("NBCBZJD002", "直接贷(保险)", "02"),
+    CRCS002("CRCS002", "直接贷款(保险类别)", "02"),
 
-    NBCBZJD003("NBCBZJD003", "直接贷B", "03"),
-    NBCBZJD004("NBCBZJD004", "直接贷(保险)", "04"),
-    NBCBZJD005("05", "直接贷(保险)", "04")
+    CRCS003("CRCS003", "直接贷款B型产品", "03"),
+    CRCS004("CRCS004", "直接贷款(保险类别)", "04"),
+    CRCS005("05", "直接贷款(保险类别)", "04")
 
 ;
 
@@ -48,7 +48,7 @@ public enum EnumProductIdSummery {
      * @return
      */
     private static List<EnumProductIdSummery> getProductIds() {
-        return Lists.newArrayList(EnumProductIdSummery.NBCBZJD001, EnumProductIdSummery.NBCBZJD003);
+        return Lists.newArrayList(EnumProductIdSummery.CRCS001, EnumProductIdSummery.CRCS003);
     }
 
 

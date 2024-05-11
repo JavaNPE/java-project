@@ -2,6 +2,8 @@ package com.youliao.java;
 
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 /**
  * **1、调用方式**
  * <p>
@@ -21,6 +23,10 @@ import lombok.Data;
 public class Person {
     private String name;
     private Integer age;
+    private String product;
+    private BigDecimal totalAmount;
+    private BigDecimal usingAmount;
+
     public static final String VALUE = "STATIC_VALUE";
 
     // 实例方法

@@ -35,10 +35,10 @@ public class JavaTest {
 	@Test
 	public void  testEnum() {
 		List<String> productList = new ArrayList<>();
-		productList.add("NBCBZJD001");
+		productList.add("CRCS001");
 		boolean zjdFlag;
-		if (productList.contains(EnumProductIdSummery.NBCBZJD001.getCode())
-				|| productList.contains(EnumProductIdSummery.NBCBZJD003.getCode()))
+		if (productList.contains(EnumProductIdSummery.CRCS001.getCode())
+				|| productList.contains(EnumProductIdSummery.CRCS003.getCode()))
 			zjdFlag = true;
 		else zjdFlag = false;
 
