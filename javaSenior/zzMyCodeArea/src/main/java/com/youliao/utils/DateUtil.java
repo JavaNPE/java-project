@@ -1,5 +1,6 @@
 package com.youliao.utils;
 
+import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 
 import java.text.SimpleDateFormat;
@@ -215,5 +216,78 @@ public final class DateUtil {
      */
     public static boolean isDateTime(String str) {
         return isDateTime(str, DATE_FORMAT_5);
+    }
+
+
+    @Getter
+    public enum TimeType {
+        // 秒
+        SECOND(0),
+        // 分
+        MINUTE(1),
+        // 小时
+        HOUR(2),
+        // 天
+        DAY(3),
+        ;
+
+        private int code;
+
+        TimeType(int code) {
+            this.code = code;
+        }
+
+
+    }
+
+    /**
+     * 计算两个日期之间的差距
+     *
+     * @param beginDate 开始日期
+     * @param endDate   结束日期
+     * @param timeType  0：秒级，1：分级，2：小时级，3：天级
+     * @return 差距
+     */
+    public static long differDateInDays(Date beginDate, Date endDate, TimeType timeType) {
+        long begin = beginDate.getTime();
+        long end = endDate.getTime();
+        long surplus = end - begin;
+
+        Calendar calendarBeginDate = Calendar.getInstance();
+        calendarBeginDate.setTime(beginDate);
+
+        Calendar calendarEndDate = Calendar.getInstance();
+        calendarEndDate.setTime(endDate);
+
+        int dstOffset = calendarBeginDate.get(Calendar.DST_OFFSET) - calendarEndDate.get(Calendar.DST_OFFSET);
+
+        surplus += dstOffset;
+
+        long ret = 0;
+        switch (timeType) {
+            case SECOND:
+                // 秒
+                ret = surplus / 1000;
+                break;
+
+            case MINUTE:
+                // 分钟
+                ret = surplus / 1000 / 60;
+                break;
+
+            case HOUR:
+                // 小时
+                ret = surplus / 1000 / 60 / 60;
+                break;
+
+            case DAY:
+                // 天
+                ret = surplus / 1000 / 60 / 60 / 24;
+                break;
+
+            default:
+                break;
+        }
+        return ret;
     }
 }

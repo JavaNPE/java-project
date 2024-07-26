@@ -8,6 +8,7 @@ import com.google.common.collect.Maps;
 import com.google.gson.Gson;
 import com.youliao.bean.Employee;
 import com.youliao.bean.Student;
+import com.youliao.bean.StudentInfo;
 import com.youliao.bean.User;
 import com.youliao.entity.AttrEntity;
 import com.youliao.enums.EnumBool;
@@ -29,9 +30,12 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @Author HedianTea
@@ -1597,4 +1601,192 @@ public class Test {
         System.out.println(noSy);
 
     }
+
+    @org.junit.Test
+    public void testNullll() {
+        Map<String,Person> map = Maps.newHashMap();
+        map.putAll(null);
+        System.out.println(map);
+
+        Person p = new Person();
+        p.setName("张1");
+        p.setProduct(EnumProductIdSummery.CRCS001.getCode());
+        p.setUsingAmount(new BigDecimal(0));
+
+        Person p2 = new Person();
+        p2.setName("张2");
+        p2.setProduct(EnumProductIdSummery.CRCS002.getCode());
+        p2.setTotalAmount(new BigDecimal(10000));
+        List<Person> personList = Lists.newArrayList();
+
+        personList.add(p);
+        personList.add(p2);
+        System.out.println(personList);
+        Map<String, Person> personMap = personList.stream().collect(Collectors.toMap(Person::getName, o -> o,
+                (a, b) -> b));
+
+        map  = personMap;
+        System.out.println(map);
+
+    }
+
+    @org.junit.Test
+    public void testJvm() {
+        // idea 中 VM 配置 -XX:+PrintGCDetails
+        System.out.println("******Hello GC");
+    }
+
+    @org.junit.Test
+    public void testJvmReference() {
+        Map map = Maps.newHashMap();
+        map.put("a","1");
+        // map地址
+        System.out.println("map的值：" + map +","+ System.identityHashCode(map));
+        Map map2 = map;
+        map.clear();
+        // 打印map地址信息
+        System.out.println("map2的值：" + map2 +","+ System.identityHashCode(map2));
+
+    }
+
+    @org.junit.Test
+    public void testEnum1()  {
+        String str = "CRCS001";
+
+        boolean equals = EnumProductIdSummery.CRCS001.equals(str);
+        if (equals) {
+            System.out.println("-------------");
+        }
+        EnumProductIdSummery.CRCS001.name();
+        System.out.println(EnumProductIdSummery.CRCS001.name());
+        System.out.println(EnumProductIdSummery.CRCS001);
+    }
+
+    @org.junit.Test
+    public void testIfPresent() {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+        Stream<Integer> iter = numbers.stream();
+        Stream<Integer> filteredStream = iter.filter(num -> num % 2 == 0);
+        //filteredStream.
+
+    }
+
+    @org.junit.Test
+    public void TestDate() {
+        Date date1 = new Date();
+
+        Date date2 = DateUtil.dateAddDay(date1, 2);
+
+        Instant instant1 = date1.toInstant();
+        Instant instant2 = date2.toInstant();
+        System.out.println("instant1:"+instant1);
+        System.out.println("instant2:"+instant2);
+
+        Duration duration = Duration.between(instant1, instant2);
+        System.out.println("duration:" + duration.toHours());
+        if (duration.toHours() < 24) {
+            System.out.println("时间差小于24小时");
+        } else {
+            System.out.println("时间差大于24小时");
+        }
+
+    }
+
+    @org.junit.Test
+    public void testSort() {
+        //测试数据，请不要纠结数据的严谨性
+        List<StudentInfo> studentList = new ArrayList<>();
+        StudentInfo studentInfo1 = new StudentInfo();
+        studentInfo1.setName("张1");
+        studentInfo1.setAge(21);
+        studentInfo1.setGender("1");
+
+        StudentInfo studentInfo2 = new StudentInfo();
+        studentInfo2.setName("张2");
+        studentInfo2.setAge(32);
+        studentInfo2.setGender("2");
+
+
+        StudentInfo studentInfo3 = new StudentInfo();
+        studentInfo3.setName("张3");
+        studentInfo3.setAge(43);
+        studentInfo3.setGender("2");
+
+
+        StudentInfo studentInfo4 = new StudentInfo();
+        studentInfo4.setName("张4");
+        studentInfo4.setAge(14);
+        studentInfo4.setGender("3");
+
+        StudentInfo studentInfo5 = new StudentInfo();
+        studentInfo3.setName("张5");
+        studentInfo3.setAge(5);
+        studentInfo3.setGender("2");
+
+        studentList.add(studentInfo2);
+        studentList.add(studentInfo1);
+        studentList.add(studentInfo3);
+        studentList.add(studentInfo5);
+        studentList.add(studentInfo4);
+
+        System.out.println("原始数据："+ studentList);
+
+        List<StudentInfo> studentInfos =
+                studentList.stream().filter(input -> "8".equals(input.getGender())).collect(Collectors.toList());
+        System.out.println("过滤后 studentInfoStream:" + studentInfos);
+        // 通过年龄进行排序
+        List<StudentInfo> infos =
+                studentInfos.stream().sorted(Comparator.comparing(StudentInfo::getAge)).collect(Collectors.toList());
+        System.out.println("排序后的数据："+ infos);
+        //StudentInfo studentInfo = infos.get(0);
+        //System.out.println("studentInfo:"+studentInfo);
+    }
+
+    @org.junit.Test
+    public void testCondition() {
+        List<String> list = null;
+        if (CollectionUtils.isEmpty(list)) {
+            System.out.println("========");
+            System.out.println(list.size());
+        }
+        list.add("1");
+        if (CollectionUtils.isEmpty(list) || list.size() ==1) {
+            System.out.println("=22111111");
+        }
+    }
+    public static final long Hour_24 = Long.parseLong("24");
+    public static final long Hour_241 = 24;
+
+    @org.junit.Test
+    public void  testDate() {
+
+        String dateString = "2024-07-24 10:25:00";
+        String pattern = "yyyy-MM-dd HH:mm:ss";
+        String dateString2 = "2024-07-25 10:24:59";
+
+        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+        Date beginDate = null;
+        Date endDate = null;
+        try {
+            beginDate = sdf.parse(dateString);
+            System.out.println("beginDate: " + beginDate);
+            endDate = sdf.parse(dateString2);
+            System.out.println("endDate: " + endDate);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        // 计算两个时间的差值
+        long ret = DateUtil.differDateInDays(beginDate, endDate, DateUtil.TimeType.HOUR);
+        //int anInt = Integer.parseInt(String.valueOf(ret));
+        System.out.println("两个时间的差值(单位小时)：" + ret);
+
+        if (ret < Hour_241) {
+            System.out.println("24h以内");
+        } else {
+            System.out.println("24h以外");
+        }
+    }
+
 }

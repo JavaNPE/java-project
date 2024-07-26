@@ -10,6 +10,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>interview</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>fourth-quarter</module>
+    </modules>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>

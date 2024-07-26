@@ -16,14 +16,14 @@ import java.util.stream.Collectors;
 @Getter
 @AllArgsConstructor
 public enum EnumProductIdSummery {
-    CRCS001("CRCS001", "助贷产品", "01"),
+    CRCS001("CRCS001_TEST", "助贷产品", "01"),
     CRCS00000000("CRCS001111", "助贷产品", "01"),
 
 
     CRCS002("CRCS002", "直接贷款(保险类别)", "02"),
 
-    CRCS003("CRCS003", "直接贷款B型产品", "03"),
-    CRCS004("CRCS004", "直接贷款(保险类别)", "04"),
+    CRCS003("CRCS003", "直接型产品", "03"),
+    CRCS004("CRCS004", "直接(保险类别)", "04"),
     CRCS005("05", "直接贷款(保险类别)", "04")
 
 ;
