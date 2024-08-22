@@ -1732,9 +1732,9 @@ public class Test {
         System.out.println("原始数据："+ studentList);
 
         List<StudentInfo> studentInfos =
-                studentList.stream().filter(input -> "8".equals(input.getGender())).collect(Collectors.toList());
+                studentList.stream().filter(input -> "2".equals(input.getGender())).collect(Collectors.toList());
         System.out.println("过滤后 studentInfoStream:" + studentInfos);
-        // 通过年龄进行排序
+        // 通过年龄进行排序 sorted 默认升序（从小到大）
         List<StudentInfo> infos =
                 studentInfos.stream().sorted(Comparator.comparing(StudentInfo::getAge)).collect(Collectors.toList());
         System.out.println("排序后的数据："+ infos);
@@ -1789,4 +1789,81 @@ public class Test {
         }
     }
 
+    @org.junit.Test
+    public void testFilter() {
+        //测试数据，请不要纠结数据的严谨性
+        List<StudentInfo> studentList = new ArrayList<>();
+        StudentInfo studentInfo1 = new StudentInfo();
+        studentInfo1.setName("张1");
+        studentInfo1.setAge(22);
+        studentInfo1.setGender("1");
+
+        StudentInfo studentInfo2 = new StudentInfo();
+        studentInfo2.setName("张2");
+        studentInfo2.setAge(22);
+        studentInfo2.setGender("1");
+
+        StudentInfo studentInfo3 = new StudentInfo();
+        studentInfo3.setName("张3");
+        studentInfo3.setAge(43);
+        studentInfo3.setGender("1");
+
+        StudentInfo studentInfo4 = new StudentInfo();
+        studentInfo4.setName("张4");
+        studentInfo4.setAge(22);
+        studentInfo4.setGender("3");
+
+        StudentInfo studentInfo5 = new StudentInfo();
+        studentInfo3.setName("张5");
+        //studentInfo3.setAge(5);
+        studentInfo3.setGender("2");
+
+        studentList.add(studentInfo1);
+        studentList.add(studentInfo2);
+        studentList.add(studentInfo3);
+        studentList.add(studentInfo4);
+        studentList.add(studentInfo5);
+
+        List<StudentInfo> infos =studentList.stream()
+                .filter(input -> input.getAge() != null && input.getAge() == 22)
+                //.filter(input -> input.getAge() == 22)
+                .filter(p -> p.getGender().equals("1"))
+                .collect(Collectors.toList());
+
+        System.out.println(infos);
+
+    }
+
+    @org.junit.Test
+    public void testHuo() {
+        String str1 = null;
+        String str2 = "null";
+
+        boolean b = StringUtils.isNotBlank(str1) || StringUtils.isNotBlank(str2);
+        System.out.println(b);
+    }
+
+
+    @org.junit.Test
+    public void testFilter2() {
+        List<Integer> numbers = Arrays.asList(1,2,3,4,5,6,7,8,9,10);
+        List<Integer> list = numbers.stream()
+                .filter(num -> num % 2 == 3)
+                .filter(i -> i > 5)
+                .collect(Collectors.toList());
+
+        List<Integer> collect =
+                list.stream().sorted(Comparator.comparing(Integer::byteValue)).collect(Collectors.toList());
+        if (CollectionUtils.isNotEmpty(collect)) {
+            System.out.println(collect.get(0));
+            System.out.println("----------------------");
+        }
+        System.out.println(collect);
+    }
+
+    @org.junit.Test
+    public void testLock() {
+        List<Person> list = Lists.newArrayList();
+
+    }
 }
